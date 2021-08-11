@@ -46,7 +46,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 7.6029058, y: 7.2360773, z: 8.860602}
-  m_Center: {x: 0.18341422, y: 5.3190064, z: 4.375735}
+  m_Center: {x: 0.18341422, y: 5.3190064, z: 0}
 --- !u!54 &1152324576335257386
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -75,9 +75,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42f7526bd70e374c9ea50a06db53cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 10
-  boostSpeed: 30
+  boostSpeed: 20000
+  playerSpeed: 200
   bulletPrefab: {fileID: 4147393132411265289, guid: 13811f49c45f0284ea7dfaad88f2e047, type: 3}
+  fireHolder: {fileID: 0}
+  fireRate: 0.1
+  targetPosition: {fileID: 0}
 --- !u!1001 &7188521627594999423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3845348106600019120, guid: 1447c0f67297b9943af0cfe9b90dbb2a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -4.4
       objectReference: {fileID: 0}
     - target: {fileID: 3845348106600019120, guid: 1447c0f67297b9943af0cfe9b90dbb2a, type: 3}
       propertyPath: m_LocalRotation.w

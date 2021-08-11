@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float bulletSpeed;
+
+    private void Update()
     {
-        
+        transform.Translate(Vector3.right * bulletSpeed * Time.deltaTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.transform.tag != "Player")
+        {
+            //damage;
+        }
+
+        if (other.transform.tag == "Rock")
+        {
+            Destroy(gameObject);
+            other.GetComponent<Fracture>().FractureObject();
+        }
+        Debug.Log(other);
     }
 }

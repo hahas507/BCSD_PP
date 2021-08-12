@@ -25,8 +25,6 @@ public class CustomCursor : MonoBehaviour
         transform.localScale = Vector3.one * size * reSizeTo;
         targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        Debug.Log(targetPos);
-
         Vector3 offset = targetPos - playerPos;
 
         transform.position = playerPos + Vector3.ClampMagnitude(offset, maxDistance);

@@ -22,20 +22,29 @@ public class PlayerController : MonoBehaviour
     private Vector3 armAngle;
     private Vector3 randomAngle;
 
+    private bool isMeleeAttack;
+
     private Rigidbody myRig;
     private Animator myAnim;
+    private Sabor sabor;
 
     private void Start()
     {
         myRig = GetComponent<Rigidbody>();
-        myAnim = GetComponentInChildren<Animator>();
+        myAnim = GetComponent<Animator>();
+        sabor = GetComponent<Sabor>();
     }
 
     private void Update()
     {
+        Shoot();
+        MeleeAttack();
+    }
+
+    private void FixedUpdate()
+    {
         LookAt();
         Move(); // Character movement & boost
-        Shoot();
     }
 
     private float GetDegree(Vector3 _from, Vector3 _to)
@@ -72,7 +81,7 @@ public class PlayerController : MonoBehaviour
             applySpeed = boostSpeed;
         }
 
-        myRig.AddForce(playerMove * applySpeed * Time.deltaTime, ForceMode.VelocityChange);
+        myRig.AddForce(playerMove * applySpeed);
     }
 
     private void Shoot()
@@ -82,12 +91,23 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetButton("Fire1"))
             {
-                myAnim.SetTrigger("Player_GunFire");
+                myAnim.SetTrigger("Attack_Gun");
                 float randomAngleY = UnityEngine.Random.Range(armAngle.y - 1, armAngle.y + 1);
                 var clone = Instantiate(bulletPrefab, shootingHand.position, Quaternion.Euler(-randomAngle));
                 Destroy(clone, 3f);
                 timer = 0f;
             }
+        }
+    }
+
+    private void MeleeAttack()
+    {
+        isMeleeAttack = false;
+        if (Input.GetButtonDown("Fire2"))
+        {
+            isMeleeAttack = true;
+
+            myAnim.SetTrigger("Attack_Melee");
         }
     }
 }

@@ -13,15 +13,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform fireHolder;
     private float timer;
     [SerializeField] private float fireRate;
+    [SerializeField] private float fireAngle;
 
     [SerializeField] private Transform targetPosition; //Look at the cursor.
-    private Vector3 angle;
+    [SerializeField] private Transform shootingArm; //ÃÑÀ» ¹ß»çÇÏ´Â ÆÈ.
+    [SerializeField] private Transform shootingHand;
+    [SerializeField] private float maxShootingAngle;
+    private Vector3 armAngle;
+    private Vector3 randomAngle;
 
     private Rigidbody myRig;
+    private Animator myAnim;
 
     private void Start()
     {
         myRig = GetComponent<Rigidbody>();
+        myAnim = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -47,9 +54,10 @@ public class PlayerController : MonoBehaviour
         Vector3 myPosition = new Vector3(myX, 0f, myZ);
         Vector3 tarPosition = new Vector3(tarX, 0f, tarZ);
 
-        angle = new Vector3(0f, GetDegree(myPosition, tarPosition), 0f);
+        armAngle = new Vector3(0f, GetDegree(myPosition, tarPosition), 0f);
+        randomAngle = new Vector3(0f, UnityEngine.Random.Range(GetDegree(myPosition, tarPosition) - fireAngle, GetDegree(myPosition, tarPosition) + fireAngle), 0f);
 
-        transform.localEulerAngles = -angle;
+        transform.eulerAngles = -armAngle;
     }
 
     private void Move()
@@ -65,7 +73,6 @@ public class PlayerController : MonoBehaviour
         }
 
         myRig.AddForce(playerMove * applySpeed * Time.deltaTime, ForceMode.VelocityChange);
-        Debug.Log(applySpeed);
     }
 
     private void Shoot()
@@ -75,7 +82,9 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetButton("Fire1"))
             {
-                var clone = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(-angle));
+                myAnim.SetTrigger("Player_GunFire");
+                float randomAngleY = UnityEngine.Random.Range(armAngle.y - 1, armAngle.y + 1);
+                var clone = Instantiate(bulletPrefab, shootingHand.position, Quaternion.Euler(-randomAngle));
                 Destroy(clone, 3f);
                 timer = 0f;
             }

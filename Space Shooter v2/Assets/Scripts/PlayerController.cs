@@ -10,15 +10,12 @@ public class PlayerController : MonoBehaviour
     private float applySpeed;
 
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform fireHolder;
     private float timer;
     [SerializeField] private float fireRate;
     [SerializeField] private float fireAngle;
 
     [SerializeField] private Transform targetPosition; //Look at the cursor.
-    [SerializeField] private Transform shootingArm; //ÃÑÀ» ¹ß»çÇÏ´Â ÆÈ.
     [SerializeField] private Transform shootingHand;
-    [SerializeField] private float maxShootingAngle;
     private Vector3 armAngle;
     private Vector3 randomAngle;
 

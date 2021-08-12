@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
             applySpeed = boostSpeed;
         }
 
-        myRig.AddForce(playerMove * applySpeed);
+        myRig.AddForce(playerMove * applySpeed, ForceMode.VelocityChange);
     }
 
     private void Shoot()

@@ -14,7 +14,7 @@ public class CustomCursor : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
     }
 
     private void Update()
@@ -25,9 +25,9 @@ public class CustomCursor : MonoBehaviour
         transform.localScale = Vector3.one * size * reSizeTo;
         targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector3 offset = targetPos - playerPos;
+        Debug.Log(targetPos);
 
-        //transform.position = targetPos;
+        Vector3 offset = targetPos - playerPos;
 
         transform.position = playerPos + Vector3.ClampMagnitude(offset, maxDistance);
     }

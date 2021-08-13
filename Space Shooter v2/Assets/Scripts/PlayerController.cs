@@ -23,13 +23,15 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody myRig;
     private Animator myAnim;
-    private Sabor sabor;
+    private Sabor theSabor;
+    private FireIndicator theFireIndicator;
 
     private void Start()
     {
         myRig = GetComponent<Rigidbody>();
         myAnim = GetComponent<Animator>();
-        sabor = GetComponent<Sabor>();
+        theSabor = FindObjectOfType<Sabor>();
+        theFireIndicator = FindObjectOfType<FireIndicator>();
     }
 
     private void Update()
@@ -83,13 +85,14 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
+        theFireIndicator.FireAngle(fireAngle);
+
         timer += Time.deltaTime;
         if (timer >= fireRate)
         {
             if (Input.GetButton("Fire1"))
             {
                 myAnim.SetTrigger("Attack_Gun");
-                float randomAngleY = UnityEngine.Random.Range(armAngle.y - 1, armAngle.y + 1);
                 var clone = Instantiate(bulletPrefab, shootingHand.position, Quaternion.Euler(-randomAngle));
                 Destroy(clone, 3f);
                 timer = 0f;

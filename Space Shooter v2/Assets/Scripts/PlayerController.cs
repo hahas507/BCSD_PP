@@ -66,6 +66,13 @@ public class PlayerController : MonoBehaviour
         Vector3 tarPosition = new Vector3(tarX, 0f, tarZ);
 
         armAngle = new Vector3(0f, GetDegree(myPosition, tarPosition), 0f);
+
+        if (armAngle.y > 90 || armAngle.y < -90)
+        {
+            armAngle.x += 180;
+        }
+
+        Debug.Log(armAngle);
         randomAngle = new Vector3(0f, UnityEngine.Random.Range(GetDegree(myPosition, tarPosition) - fireAngle, GetDegree(myPosition, tarPosition) + fireAngle), 0f);
 
         transform.eulerAngles = -armAngle;

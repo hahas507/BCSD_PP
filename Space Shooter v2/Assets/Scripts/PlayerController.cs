@@ -19,8 +19,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 armAngle;
     private Vector3 randomAngle;
 
+    [SerializeField] private GameObject boostEffectPrefab;
+    [SerializeField] private float boostStartSpeed;
+
     private bool isMeleeAttack;
-    private bool isMoving;
 
     private Rigidbody myRig;
     private Animator myAnim;
@@ -76,11 +78,17 @@ public class PlayerController : MonoBehaviour
         float zInput = Input.GetAxis("Vertical");
         Vector3 playerMove = new Vector3(xInput, 0f, zInput);
 
+        float currentMoveSpeedX = myRig.velocity.x;
+        float currentMoveSpeedY = myRig.velocity.z;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             applySpeed = boostSpeed;
-            if (isMoving)
+            myRig.AddForce(playerMove * applySpeed, ForceMode.VelocityChange);
+            if (Mathf.Abs(currentMoveSpeedX) > boostStartSpeed || Mathf.Abs(currentMoveSpeedY) > boostStartSpeed)
             {
+                var clone = Instantiate(boostEffectPrefab, transform.position, Quaternion.LookRotation(-transform.right));
+                Destroy(clone, 3f);
             }
         }
 

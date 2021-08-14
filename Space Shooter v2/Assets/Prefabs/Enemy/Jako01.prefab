@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 6857189777393956607}
   - component: {fileID: 8215779124022819448}
   - component: {fileID: 2754227323324250306}
+  - component: {fileID: 1384012122}
+  - component: {fileID: 1384012123}
+  - component: {fileID: 1384012124}
   m_Layer: 0
   m_Name: Jako01
   m_TagString: Untagged
@@ -60,8 +63,59 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1384012122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6857189777393956606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d3a486cff1bf340b3d7bb0d2c5965d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+--- !u!195 &1384012123
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6857189777393956606}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 2
+  m_Speed: 200
+  m_Acceleration: 50
+  avoidancePriority: 50
+  m_AngularSpeed: 700
+  m_StoppingDistance: 10
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1384012124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6857189777393956606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d26e6aa623bb68a4494841dbee77affa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ZacoBullet: {fileID: 4147393132411265289, guid: 13811f49c45f0284ea7dfaad88f2e047, type: 3}
+  attackCycle: 5.4
+  magazine: 8
+  fireRate: 0.25
 --- !u!1001 &6857189778366916300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,11 +145,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1556519387392072959, guid: c82b016e7d181d24fbfeff29108744ce, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1556519387392072959, guid: c82b016e7d181d24fbfeff29108744ce, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1556519387392072959, guid: c82b016e7d181d24fbfeff29108744ce, type: 3}
       propertyPath: m_LocalRotation.z

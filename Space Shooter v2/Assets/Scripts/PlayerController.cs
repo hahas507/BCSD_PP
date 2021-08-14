@@ -72,7 +72,6 @@ public class PlayerController : MonoBehaviour
             armAngle.x += 180;
         }
 
-        Debug.Log(armAngle);
         randomAngle = new Vector3(0f, UnityEngine.Random.Range(GetDegree(myPosition, tarPosition) - fireAngle, GetDegree(myPosition, tarPosition) + fireAngle), 0f);
 
         transform.eulerAngles = -armAngle;
@@ -96,6 +95,8 @@ public class PlayerController : MonoBehaviour
             {
                 var clone = Instantiate(boostEffectPrefab, transform.position, Quaternion.LookRotation(-transform.right));
                 Destroy(clone, 3f);
+
+                myAnim.SetTrigger("Booster");
             }
         }
 
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        theFireIndicator.FireAngle(fireAngle);
+        //theFireIndicator.FireAngle(fireAngle);
 
         timer += Time.deltaTime;
         if (timer >= fireRate)

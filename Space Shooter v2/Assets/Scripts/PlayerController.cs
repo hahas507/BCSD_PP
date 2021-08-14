@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 randomAngle;
 
     private bool isMeleeAttack;
+    private bool isMoving;
 
     private Rigidbody myRig;
     private Animator myAnim;
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         LookAt();
-        Move(); // Character movement & boost
+        TryMove(); // Character movement & boost
     }
 
     private float GetDegree(Vector3 _from, Vector3 _to)
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
         transform.eulerAngles = -armAngle;
     }
 
-    private void Move()
+    private void TryMove()
     {
         applySpeed = playerSpeed;
         float xInput = Input.GetAxis("Horizontal");
@@ -78,6 +79,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             applySpeed = boostSpeed;
+            if (isMoving)
+            {
+            }
         }
 
         myRig.AddForce(playerMove * applySpeed, ForceMode.VelocityChange);

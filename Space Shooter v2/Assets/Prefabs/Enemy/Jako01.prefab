@@ -88,8 +88,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2
-  m_Speed: 200
-  m_Acceleration: 50
+  m_Speed: 75
+  m_Acceleration: 250
   avoidancePriority: 50
   m_AngularSpeed: 700
   m_StoppingDistance: 10
@@ -112,10 +112,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26e6aa623bb68a4494841dbee77affa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ZacoBullet: {fileID: 4147393132411265289, guid: 13811f49c45f0284ea7dfaad88f2e047, type: 3}
+  ZacoBullet: {fileID: 217198129246179318, guid: 3511ba807e814b94e8efc7c201244cd9, type: 3}
   attackCycle: 5.4
   magazine: 8
   fireRate: 0.25
+  bashAngle: 0
+  bashRange: 30
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &6857189778366916300
 PrefabInstance:
   m_ObjectHideFlags: 0

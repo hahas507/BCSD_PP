@@ -101,15 +101,27 @@ MonoBehaviour:
   thisName: Jako RED
   thisHP: 15
   deathParticlePrefab: {fileID: 8440117091162997854, guid: be69a9148294868429effa1b9682ee9a, type: 3}
-  hitParticlePrefab: {fileID: 3287692079780859339, guid: 3fabe2a3318f60d438f1029f2d45c3bf, type: 3}
   rigid: {fileID: -5679675878163510671}
   agent: {fileID: -8815643248062307390}
   target: {fileID: 0}
-  bashAngle: 30
-  bashRange: 30
+  Waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rePathTime: 0.1
+  bashAngle: 180
+  bashRange: 60
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
+  bashSpeed: 500
+  bashForThisSecond: 2
+  bashCoolTime: 3
+  normalSpeed: 75
+  normalAngularSpeed: 700
 --- !u!1 &6502810704392247445
 GameObject:
   m_ObjectHideFlags: 0

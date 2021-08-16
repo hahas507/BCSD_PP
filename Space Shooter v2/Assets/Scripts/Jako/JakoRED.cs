@@ -9,25 +9,34 @@ public class JakoRED : JakoParent
     [SerializeField] private float bashRange;
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private float bashSpeed;
-    private float timer; //쿨타임 타이머
+
+    private float bashTimer; //쿨타임 타이머
+
     [SerializeField] private float bashForThisSecond;
     [SerializeField] private float bashCoolTime;
 
-    protected override void Update()
-    {
-        base.Update();
-        BashDetect();
-    }
+    [SerializeField] protected float normalSpeed; //navMesh speed
+    [SerializeField] protected float normalAngularSpeed;
 
     private void Start()
     {
-        agent.speed = 0;
-        agent.angularSpeed = 0;
+        agent.SetDestination(target.position);
+    }
+
+    protected override void Update()
+    {
+        if (!isDead)
+        {
+            BashDetect();
+
+            repathTimer += Time.deltaTime;
+            StartCoroutine(PathFind());
+        }
     }
 
     private void BashDetect()
     {
-        timer += Time.deltaTime;
+        bashTimer += Time.deltaTime;
 
         Collider[] _target = Physics.OverlapSphere(transform.position, bashRange, targetMask);
 
@@ -47,8 +56,10 @@ public class JakoRED : JakoParent
                     {
                         if (_hit.transform.tag == "Player")
                         {
-                            if (timer >= bashCoolTime)
+                            if (bashTimer >= bashCoolTime)
                             {
+                                Debug.Log("BASH!");
+                                bashTimer = 0;
                                 StartCoroutine(StartBash(bashForThisSecond));
                             }
                         }
@@ -56,15 +67,21 @@ public class JakoRED : JakoParent
                 }
             }
         }
-        agent.speed = normalSpeed;
-        agent.angularSpeed = normalAngularSpeed;
     }
 
     private IEnumerator StartBash(float _bash)
     {
-        agent.speed = bashSpeed;
-        agent.angularSpeed = 0;
+        YieldInstruction wait = new WaitForSeconds(_bash);
+        bashTimer += Time.deltaTime;
+        while (bashTimer <= bashForThisSecond)
+        {
+            Debug.Log("BASH!");
+            agent.speed = bashSpeed;
+            yield return wait;
+        }
 
-        yield return new WaitForSeconds(_bash;)
+        agent.speed = normalSpeed;
+        Debug.Log("NORMAL!");
+        yield return null;
     }
 }

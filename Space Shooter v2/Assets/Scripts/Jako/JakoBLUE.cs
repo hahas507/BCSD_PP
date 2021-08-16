@@ -8,13 +8,23 @@ public class JakoBLUE : JakoParent
     [SerializeField] private GameObject ZacoBullet;
     private float timer;
     [SerializeField] private float attackCycle;
-    [SerializeField] private float magazine;
+    [SerializeField] private int magazine;
     [SerializeField] private float fireRate;
+
+    private void Start()
+    {
+        agent.SetDestination(target.position);
+    }
 
     protected override void Update()
     {
-        base.Update();
-        BlueAttack();
+        if (!isDead)
+        {
+            BlueAttack();
+
+            repathTimer += Time.deltaTime;
+            StartCoroutine(PathFind());
+        }
     }
 
     private void BlueAttack()

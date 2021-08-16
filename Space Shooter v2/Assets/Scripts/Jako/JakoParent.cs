@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class JakoParent : Status
+public abstract class JakoParent : Status
 {
     [SerializeField] protected GameObject deathParticlePrefab;
-    [SerializeField] protected GameObject hitParticlePrefab;
     [SerializeField] protected Rigidbody rigid;
     [SerializeField] protected NavMeshAgent agent;
-    [SerializeField] protected Transform target;
+    [SerializeField] protected Transform target; //Player
+    [SerializeField] protected Transform[] Waypoints; //Around Player
 
-    [SerializeField] protected float normalSpeed; //navMesh speed
-    [SerializeField] protected float normalAngularSpeed;
+    [SerializeField] protected float rePathTime;
+    protected float repathTimer; //경로 타이머
 
     protected override void Awake()
     {
@@ -21,13 +21,7 @@ public class JakoParent : Status
         agent = GetComponent<NavMeshAgent>();
     }
 
-    protected virtual void Update()
-    {
-        if (!isDead)
-        {
-            agent.SetDestination(target.position);
-        }
-    }
+    protected abstract void Update();
 
     public override void GetDamage(int _damage)
     {
@@ -56,12 +50,25 @@ public class JakoParent : Status
         Destroy(gameObject, .5f);
     }
 
-    protected void OnTriggerEnter(Collider other)
+    protected IEnumerator RandomPathFind()
     {
-        if (other.transform.tag == "Bullet")
+        YieldInstruction wait = new WaitForSeconds(2);
+        while (repathTimer >= rePathTime)
         {
-            var clone = Instantiate(hitParticlePrefab, transform.position, Quaternion.identity);
-            Destroy(clone, 1);
+            agent.SetDestination(Waypoints[UnityEngine.Random.Range(0, Waypoints.Length)].position);
+            repathTimer = 0;
+            yield return wait;
+        }
+    }
+
+    protected IEnumerator PathFind()
+    {
+        YieldInstruction wait = new WaitForSeconds(2);
+        while (repathTimer >= rePathTime)
+        {
+            agent.SetDestination(target.position);
+            repathTimer = 0;
+            yield return wait;
         }
     }
 }

@@ -62,6 +62,7 @@ MonoBehaviour:
   bulletSpeed: 200
   isThisPlayer: 0
   bulletDamage: 3
+  hitParticlePrefab: {fileID: 3287692079780859339, guid: 3fabe2a3318f60d438f1029f2d45c3bf, type: 3}
 --- !u!1 &3968873832616254613
 GameObject:
   m_ObjectHideFlags: 0

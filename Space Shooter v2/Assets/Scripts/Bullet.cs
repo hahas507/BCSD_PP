@@ -10,6 +10,8 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private int bulletDamage;
 
+    [SerializeField] protected GameObject hitParticlePrefab;
+
     private Status theStatus;
 
     private void Awake()
@@ -29,6 +31,8 @@ public class Bullet : MonoBehaviour
             if (other.transform.tag != "Player")
             {
                 other.GetComponent<Status>().GetDamage(bulletDamage);
+                var clone = Instantiate(hitParticlePrefab, transform.position, Quaternion.identity);
+                Destroy(clone, 1);
                 Destroy(gameObject);
             }
         }
@@ -38,6 +42,7 @@ public class Bullet : MonoBehaviour
             if (other.transform.tag == "Player")
             {
                 other.GetComponent<Status>().GetDamage(bulletDamage);
+                Destroy(gameObject);
             }
         }
     }

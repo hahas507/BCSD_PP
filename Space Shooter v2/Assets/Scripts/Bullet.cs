@@ -6,6 +6,16 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private bool isThisPlayer;
+
+    [SerializeField] private int bulletDamage;
+
+    private Status theStatus;
+
+    private void Awake()
+    {
+        theStatus = FindObjectOfType<Status>();
+    }
 
     private void Update()
     {
@@ -14,16 +24,21 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag != "Player")
+        if (isThisPlayer)
         {
-            //damage;
+            if (other.transform.tag != "Player")
+            {
+                other.GetComponent<Status>().GetDamage(bulletDamage);
+                Destroy(gameObject);
+            }
         }
 
-        if (other.transform.tag == "Rock")
+        if (!isThisPlayer)
         {
-            Destroy(gameObject);
-            other.GetComponent<Fracture>().FractureObject();
+            if (other.transform.tag == "Player")
+            {
+                other.GetComponent<Status>().GetDamage(bulletDamage);
+            }
         }
-        Debug.Log(other);
     }
 }

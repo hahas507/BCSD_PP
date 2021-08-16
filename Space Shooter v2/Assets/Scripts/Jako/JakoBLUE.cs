@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JazoAI : MonoBehaviour
+public class JakoBLUE : JakoParent
 {
     [SerializeField] private GameObject ZacoBullet;
     private float timer;
@@ -11,20 +11,20 @@ public class JazoAI : MonoBehaviour
     [SerializeField] private float magazine;
     [SerializeField] private float fireRate;
 
-    [SerializeField] private float bashAngle;
-    [SerializeField] private float bashRange;
-    [SerializeField] private LayerMask targetMask;
+    protected override void Update()
+    {
+        base.Update();
+        BlueAttack();
+    }
 
-    private void Update()
+    private void BlueAttack()
     {
         timer += Time.deltaTime;
-        if (timer >= attackCycle)
+        if (timer >= attackCycle && !isDead)
         {
             StartCoroutine(AttackCoroutine());
             timer = 0;
         }
-
-        BashRange();
     }
 
     private IEnumerator AttackCoroutine()
@@ -35,19 +35,5 @@ public class JazoAI : MonoBehaviour
             Destroy(clone, 1.3f);
             yield return new WaitForSeconds(fireRate);
         }
-    }
-
-    private Vector3 Boundary(float _angle)
-    {
-        _angle += transform.eulerAngles.y;
-        return new Vector3(Mathf.Sin(_angle * Mathf.Deg2Rad), 0f, Mathf.Cos(_angle * Mathf.Deg2Rad));
-    }
-
-    private void BashRange()
-    {
-        Vector3 leftBoundary = Boundary(-bashAngle * 0.5f);
-        Vector3 rightBoundary = Boundary(bashAngle * 0.5f);
-
-        Collider[] _target = Physics.OverlapSphere(transform.position, bashRange, targetMask);
     }
 }

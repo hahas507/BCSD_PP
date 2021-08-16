@@ -11,16 +11,15 @@ GameObject:
   - component: {fileID: 6857189777393956607}
   - component: {fileID: 8215779124022819448}
   - component: {fileID: 2754227323324250306}
-  - component: {fileID: 1384012122}
   - component: {fileID: 1384012123}
-  - component: {fileID: 1384012124}
+  - component: {fileID: 687700875}
   m_Layer: 0
-  m_Name: Jako01
-  m_TagString: Untagged
+  m_Name: JakoBLUE
+  m_TagString: Jako
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6857189777393956607
 Transform:
   m_ObjectHideFlags: 0
@@ -47,8 +46,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.6777573, y: 1.8562393, z: 3.7986183}
-  m_Center: {x: 0, y: 4.985237, z: -0.39980316}
+  m_Size: {x: 5.6777573, y: 10.546436, z: 3.7986183}
+  m_Center: {x: 0, y: 6.0537043, z: -0.39980316}
 --- !u!54 &2754227323324250306
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -58,26 +57,13 @@ Rigidbody:
   m_GameObject: {fileID: 6857189777393956606}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 3
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 84
   m_CollisionDetection: 0
---- !u!114 &1384012122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6857189777393956606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9d3a486cff1bf340b3d7bb0d2c5965d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!195 &1384012123
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -100,7 +86,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1384012124
+--- !u!114 &687700875
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,15 +98,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26e6aa623bb68a4494841dbee77affa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisName: Jako BLUE
+  thisHP: 10
+  deathParticlePrefab: {fileID: 8440117091162997854, guid: be69a9148294868429effa1b9682ee9a, type: 3}
+  hitParticlePrefab: {fileID: 3287692079780859339, guid: 3fabe2a3318f60d438f1029f2d45c3bf, type: 3}
+  rigid: {fileID: 2754227323324250306}
+  agent: {fileID: 1384012123}
+  target: {fileID: 0}
+  normalSpeed: 0
+  normalAngularSpeed: 0
   ZacoBullet: {fileID: 217198129246179318, guid: 3511ba807e814b94e8efc7c201244cd9, type: 3}
   attackCycle: 5.4
   magazine: 8
   fireRate: 0.25
-  bashAngle: 0
-  bashRange: 30
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1001 &6857189778366916300
 PrefabInstance:
   m_ObjectHideFlags: 0

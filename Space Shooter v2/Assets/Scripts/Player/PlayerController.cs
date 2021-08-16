@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Status
 {
     [SerializeField] private float boostSpeed;
     [SerializeField] private float playerSpeed;
@@ -22,15 +22,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject boostEffectPrefab;
     [SerializeField] private float boostStartSpeed;
 
-    private bool isMeleeAttack;
+    //private bool isMeleeAttack;
 
     private Rigidbody myRig;
     private Animator myAnim;
     private Sabor theSabor;
     private FireIndicator theFireIndicator;
 
+    private PlayerController thePlayer;
+
     private void Start()
     {
+        thePlayer = GetComponent<PlayerController>();
         myRig = GetComponent<Rigidbody>();
         myAnim = GetComponent<Animator>();
         theSabor = FindObjectOfType<Sabor>();
@@ -40,13 +43,23 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Shoot();
-        MeleeAttack();
+        //MeleeAttack();
     }
 
     private void FixedUpdate()
     {
         LookAt();
         TryMove(); // Character movement & boost
+    }
+
+    public override void GetDamage(int _damage)
+    {
+        base.GetDamage(_damage);
+
+        if (currentHP <= 0 && !isDead)
+        {
+            thePlayer.enabled = false;
+        }
     }
 
     private float GetDegree(Vector3 _from, Vector3 _to)
@@ -120,14 +133,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void MeleeAttack()
-    {
-        isMeleeAttack = false;
-        if (Input.GetButtonDown("Fire2"))
-        {
-            isMeleeAttack = true;
+    //private void MeleeAttack()
+    //{
+    //    isMeleeAttack = false;
+    //    if (Input.GetButtonDown("Fire2"))
+    //    {
+    //        isMeleeAttack = true;
 
-            myAnim.SetTrigger("Attack_Melee");
-        }
-    }
+    //        myAnim.SetTrigger("Attack_Melee");
+    //    }
+    //}
 }

@@ -2,12 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fracture : MonoBehaviour
+public class Fracture : Status
 {
     [Tooltip("\"Fractured\" is the object that this will break into")]
     public GameObject fractured;
 
-    public void FractureObject()
+    public override void GetDamage(int _damage)
+    {
+        base.GetDamage(_damage);
+        Debug.Log(thisName + " : " + currentHP);
+        if (currentHP <= 0)
+        {
+            FractureObject();
+        }
+    }
+
+    private void FractureObject()
     {
         var fractures = Instantiate(fractured, transform.position, transform.rotation); //Spawn in the broken version
         fractures.transform.localScale = transform.localScale;

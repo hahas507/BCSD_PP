@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -8387307746793509352}
   m_Layer: 0
   m_Name: JakoBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,6 +60,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 200
+  isThisPlayer: 0
+  bulletDamage: 3
 --- !u!1 &3968873832616254613
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class Sabor : MonoBehaviour
     {
         if (other.transform.tag == "Rock")
         {
-            other.GetComponent<Fracture>().FractureObject();
+            //other.GetComponent<Fracture>().GetDamage();
         }
     }
 }

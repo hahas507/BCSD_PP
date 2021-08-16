@@ -96,6 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b8c7d88eebb9940b3c4196017b84df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisName: Rock
+  thisHP: 30
   fractured: {fileID: 1342456525053472956, guid: 3411c56d2afd5af4a8df22b06f9551e3, type: 3}
 --- !u!65 &-935219462599360350
 BoxCollider:

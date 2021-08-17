@@ -14,7 +14,11 @@ public class PlayerController : Status
     [SerializeField] private float fireRate;
     [SerializeField] private float fireAngle;
 
+    [SerializeField] private int shotgunBulletCount;[Tooltip("한번에 발사할 총알 수")]
+    private Vector3 myPosition; private Vector3 tarPosition;
+
     [SerializeField] private Transform targetPosition; //Look at the cursor.
+
     [SerializeField] private Transform shootingHand;
     private Vector3 armAngle;
     private Vector3 randomAngle;
@@ -33,7 +37,6 @@ public class PlayerController : Status
     [SerializeField] private BoxCollider boxCol;
 
     private Sabor theSabor;
-    private FireIndicator theFireIndicator;
 
     private PlayerController thePlayer;
 
@@ -44,7 +47,6 @@ public class PlayerController : Status
         myAnim = GetComponent<Animator>();
         boxCol = GetComponent<BoxCollider>();
         theSabor = FindObjectOfType<Sabor>();
-        theFireIndicator = FindObjectOfType<FireIndicator>();
     }
 
     private void Update()
@@ -93,11 +95,12 @@ public class PlayerController : Status
         {
             case WEAPONS.RIFLE:
                 Debug.Log("rifle");
-                Shoot();
+                ShootRifle();
                 break;
 
             case WEAPONS.SHOTGUN:
                 Debug.Log("shotgun");
+                ShootShotgun();
                 break;
 
             case WEAPONS.LAZER:
@@ -146,8 +149,8 @@ public class PlayerController : Status
         float tarX = targetPosition.position.x;
         float tarZ = targetPosition.position.z;
 
-        Vector3 myPosition = new Vector3(myX, 0f, myZ);
-        Vector3 tarPosition = new Vector3(tarX, 0f, tarZ);
+        myPosition = new Vector3(myX, 0f, myZ);
+        tarPosition = new Vector3(tarX, 0f, tarZ);
 
         armAngle = new Vector3(0f, GetDegree(myPosition, tarPosition), 0f);
 
@@ -155,8 +158,6 @@ public class PlayerController : Status
         {
             armAngle.x += 180;
         }
-
-        randomAngle = new Vector3(0f, UnityEngine.Random.Range(GetDegree(myPosition, tarPosition) - fireAngle, GetDegree(myPosition, tarPosition) + fireAngle), 0f);
 
         transform.eulerAngles = -armAngle;
     }
@@ -187,7 +188,8 @@ public class PlayerController : Status
         myRig.AddForce(playerMove * applySpeed, ForceMode.VelocityChange);
     }
 
-    private void Shoot()
+    //RIFLE 발사
+    private void ShootRifle()
     {
         Debug.Log("RIFLE");
         timer += Time.deltaTime;
@@ -196,6 +198,7 @@ public class PlayerController : Status
             if (Input.GetButton("Fire1"))
             {
                 myAnim.SetTrigger("Attack_Gun");
+                randomAngle = new Vector3(0f, UnityEngine.Random.Range(GetDegree(myPosition, tarPosition) - fireAngle, GetDegree(myPosition, tarPosition) + fireAngle), 0f);
                 var clone = Instantiate(bulletPrefab, shootingHand.position + (transform.forward * 2.2f), Quaternion.Euler(-randomAngle));
                 Destroy(clone, 3f);
                 timer = 0f;
@@ -203,6 +206,28 @@ public class PlayerController : Status
         }
     }
 
+    private void ShootShotgun()
+    {
+        Debug.Log("SHOTGUN");
+        timer += Time.deltaTime;
+        if (timer >= fireRate)
+        {
+            if (Input.GetButton("Fire1"))
+            {
+                myAnim.SetTrigger("Attack_Gun");
+                for (int i = 0; i < shotgunBulletCount; i++)
+                {
+                    randomAngle = new Vector3(0f, UnityEngine.Random.Range(GetDegree(myPosition, tarPosition) - fireAngle, GetDegree(myPosition, tarPosition) + fireAngle), 0f);
+                    var clone = Instantiate(bulletPrefab, shootingHand.position + (transform.forward * 2.2f), Quaternion.Euler(-randomAngle));
+                    Destroy(clone, 1f);
+                }
+
+                timer = 0f;
+            }
+        }
+    }
+
+    // RED에게 피격시 잠시 무적
     private IEnumerator ImmortalFor(float _time)
     {
         YieldInstruction wait = new WaitForSeconds(_time);

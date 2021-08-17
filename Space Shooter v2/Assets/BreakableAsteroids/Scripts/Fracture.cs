@@ -10,7 +10,7 @@ public class Fracture : Status
     public override void GetDamage(int _damage)
     {
         base.GetDamage(_damage);
-        Debug.Log(thisName + " : " + currentHP);
+
         if (currentHP <= 0)
         {
             FractureObject();

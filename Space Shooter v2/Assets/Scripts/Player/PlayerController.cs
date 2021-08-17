@@ -49,8 +49,67 @@ public class PlayerController : Status
 
     private void Update()
     {
-        Shoot();
-        //MeleeAttack();
+        //Shoot();
+        DetectWeaponSelect();
+    }
+
+    public enum WEAPONS
+    {
+        RIFLE,
+        SHOTGUN,
+        LAZER,
+        EMPTY,
+    }
+
+    public WEAPONS weapon;
+
+    private void DetectWeaponSelect()
+    {
+        int currentWeapon = (int)weapon;
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            currentWeapon = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            currentWeapon = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            currentWeapon = 2;
+        }
+        //else if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    //Missile();
+        //}
+        //else if (Input.GetKey(KeyCode.LeftShift))
+        //{
+        //    //MeleeAttack();
+        //}
+        weapon = (WEAPONS)currentWeapon;
+
+        switch (weapon)
+        {
+            case WEAPONS.RIFLE:
+                Debug.Log("rifle");
+                Shoot();
+                break;
+
+            case WEAPONS.SHOTGUN:
+                Debug.Log("shotgun");
+                break;
+
+            case WEAPONS.LAZER:
+                Debug.Log("lazer");
+                break;
+
+            case WEAPONS.EMPTY:
+                break;
+
+            default:
+                break;
+        }
     }
 
     private void FixedUpdate()
@@ -130,15 +189,14 @@ public class PlayerController : Status
 
     private void Shoot()
     {
-        //theFireIndicator.FireAngle(fireAngle);
-
+        Debug.Log("RIFLE");
         timer += Time.deltaTime;
         if (timer >= fireRate)
         {
             if (Input.GetButton("Fire1"))
             {
                 myAnim.SetTrigger("Attack_Gun");
-                var clone = Instantiate(bulletPrefab, shootingHand.position, Quaternion.Euler(-randomAngle));
+                var clone = Instantiate(bulletPrefab, shootingHand.position + (transform.forward * 2.2f), Quaternion.Euler(-randomAngle));
                 Destroy(clone, 3f);
                 timer = 0f;
             }

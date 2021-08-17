@@ -12,6 +12,7 @@ public class PlayerController : Status
     [SerializeField] private GameObject bulletPrefab;
     private float timer;
     [SerializeField] private float fireRate;
+    [SerializeField] private float shotgunFireRate;
     [SerializeField] private float fireAngle;
 
     [SerializeField] private int shotgunBulletCount;[Tooltip("한번에 발사할 총알 수")]
@@ -31,6 +32,8 @@ public class PlayerController : Status
 
     //private bool isMeleeAttack;
     private bool isAttacked = false;
+
+    private bool isFire = false;
 
     private Rigidbody myRig;
     private Animator myAnim;
@@ -94,12 +97,12 @@ public class PlayerController : Status
         switch (weapon)
         {
             case WEAPONS.RIFLE:
-                Debug.Log("rifle");
+                //Debug.Log("rifle");
                 ShootRifle();
                 break;
 
             case WEAPONS.SHOTGUN:
-                Debug.Log("shotgun");
+                //Debug.Log("shotgun");
                 ShootShotgun();
                 break;
 
@@ -210,14 +213,15 @@ public class PlayerController : Status
     {
         Debug.Log("SHOTGUN");
         timer += Time.deltaTime;
-        if (timer >= fireRate)
+        if (timer >= shotgunFireRate)
         {
             if (Input.GetButton("Fire1"))
             {
                 myAnim.SetTrigger("Attack_Gun");
+
                 for (int i = 0; i < shotgunBulletCount; i++)
                 {
-                    randomAngle = new Vector3(0f, UnityEngine.Random.Range(GetDegree(myPosition, tarPosition) - fireAngle, GetDegree(myPosition, tarPosition) + fireAngle), 0f);
+                    randomAngle = new Vector3(0f, UnityEngine.Random.Range(GetDegree(myPosition, tarPosition) - fireAngle * 2, GetDegree(myPosition, tarPosition) + fireAngle * 2), 0f);
                     var clone = Instantiate(bulletPrefab, shootingHand.position + (transform.forward * 2.2f), Quaternion.Euler(-randomAngle));
                     Destroy(clone, 1f);
                 }

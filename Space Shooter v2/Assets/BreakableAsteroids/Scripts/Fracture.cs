@@ -7,7 +7,7 @@ public class Fracture : Status
     [Tooltip("\"Fractured\" is the object that this will break into")]
     public GameObject fractured;
 
-    public override void GetDamage(int _damage)
+    public override void GetDamage(float _damage)
     {
         base.GetDamage(_damage);
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -8815643248062307390}
   - component: {fileID: -3204819483520716241}
   - component: {fileID: 5632866849015856804}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: JakoRED
   m_TagString: Jako
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 812136841521859707}
   - component: {fileID: 2667339824720413621}
   - component: {fileID: 1874591005019778425}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

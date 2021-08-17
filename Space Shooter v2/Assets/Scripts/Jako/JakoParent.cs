@@ -25,7 +25,7 @@ public abstract class JakoParent : Status
 
     protected abstract void Update();
 
-    public override void GetDamage(int _damage)
+    public override void GetDamage(float _damage)
     {
         base.GetDamage(_damage);
         if (currentHP <= 0 && !isDead)

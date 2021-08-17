@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1337599354430236857}
   - component: {fileID: -7041219613196499051}
   - component: {fileID: -8387307746793509352}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: JakoBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3792315768358259700}
   - component: {fileID: 6681080029750858260}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 7233504197740419426}
   - component: {fileID: 1389738931575921646}
   - component: {fileID: 252917714765841417}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Model 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

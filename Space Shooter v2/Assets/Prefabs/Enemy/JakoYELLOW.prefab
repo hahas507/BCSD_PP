@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7400820732439934194}
   - component: {fileID: 60548976739507411}
   - component: {fileID: 8907585288600741893}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: -6443411402911046724}
   - component: {fileID: -9158477263036613089}
   - component: {fileID: 6694050243799903961}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: JakoYELLOW
   m_TagString: Jako
   m_Icon: {fileID: 0}

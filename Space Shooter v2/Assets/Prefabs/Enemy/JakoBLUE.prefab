@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1384012123}
   - component: {fileID: 687700875}
   - component: {fileID: 2516126745558681394}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: JakoBLUE
   m_TagString: Jako
   m_Icon: {fileID: 0}
@@ -165,6 +165,14 @@ PrefabInstance:
     - target: {fileID: 6503566621109643197, guid: c82b016e7d181d24fbfeff29108744ce, type: 3}
       propertyPath: m_Name
       value: UltravioletIntruder
+      objectReference: {fileID: 0}
+    - target: {fileID: 6503566621109643197, guid: c82b016e7d181d24fbfeff29108744ce, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643101217121189713, guid: c82b016e7d181d24fbfeff29108744ce, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c82b016e7d181d24fbfeff29108744ce, type: 3}

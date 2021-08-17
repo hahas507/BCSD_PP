@@ -6,8 +6,8 @@ public class Status : MonoBehaviour
 {
     [SerializeField] protected string thisName;
 
-    [SerializeField] protected int thisHP;
-    protected int currentHP;
+    [SerializeField] protected float thisHP;
+    protected float currentHP;
 
     protected bool isDead = false;
 
@@ -16,7 +16,7 @@ public class Status : MonoBehaviour
         currentHP = thisHP;
     }
 
-    public virtual void GetDamage(int _damage)
+    public virtual void GetDamage(float _damage)
     {
         if (!isDead)
         {

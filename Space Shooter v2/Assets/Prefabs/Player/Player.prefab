@@ -225,9 +225,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1426733533398958567}
-  - component: {fileID: 2569703466403784472}
   - component: {fileID: 1152324576335257386}
   - component: {fileID: 399257719}
+  - component: {fileID: 571593284}
   - component: {fileID: 5978539161775707706}
   m_Layer: 7
   m_Name: Player
@@ -251,19 +251,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2569703466403784472
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1426733533398958564}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.6029058, y: 8.766077, z: 8.860602}
-  m_Center: {x: 0.18341422, y: 0, z: 0}
 --- !u!54 &1152324576335257386
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -299,6 +286,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &571593284
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426733533398958564}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 5
+  m_Height: 25
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5978539161775707706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,18 +313,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisName: Player
-  thisHP: 30
+  thisHP: 300
+  attackLayer:
+    serializedVersion: 2
+    m_Bits: 0
   boostSpeed: 50
   playerSpeed: 6
   bulletPrefab: {fileID: 4147393132411265289, guid: 13811f49c45f0284ea7dfaad88f2e047, type: 3}
   fireRate: 0.1
   fireAngle: 6
+  shotgunBulletCount: 10
+  shotgunFireRate: 0.5
+  lazerMaxDistance: 100
+  lazerDamage: 0
   targetPosition: {fileID: 0}
   shootingHand: {fileID: 9168186397763002916}
   boostEffectPrefab: {fileID: 5493732155541517173, guid: 9ff211934a45577449f7de2efb12fe92, type: 3}
+  LazerEffectPrefab: {fileID: 3287692079780859339, guid: ebab2bde95cd70d45b3092a550d0ee3d, type: 3}
   boostStartSpeed: 5
-  immortalTime: 0
-  boxCol: {fileID: 0}
+  immortalTime: 2
+  capCol: {fileID: 0}
+  weapon: 0
 --- !u!1001 &7188521627594999423
 PrefabInstance:
   m_ObjectHideFlags: 0

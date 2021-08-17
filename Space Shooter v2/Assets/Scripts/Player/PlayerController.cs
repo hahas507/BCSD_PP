@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : Status
 {
+    [SerializeField] private LayerMask attackLayer;
     [SerializeField] private float boostSpeed;
     [SerializeField] private float playerSpeed;
     private float applySpeed;
@@ -12,10 +13,15 @@ public class PlayerController : Status
     [SerializeField] private GameObject bulletPrefab;
     private float timer;
     [SerializeField] private float fireRate;
-    [SerializeField] private float shotgunFireRate;
     [SerializeField] private float fireAngle;
 
     [SerializeField] private int shotgunBulletCount;[Tooltip("한번에 발사할 총알 수")]
+    [SerializeField] private float shotgunFireRate;
+
+    private RaycastHit hitInfo;
+    [SerializeField] private float lazerMaxDistance;
+    [SerializeField] private float lazerDamage;
+
     private Vector3 myPosition; private Vector3 tarPosition;
 
     [SerializeField] private Transform targetPosition; //Look at the cursor.
@@ -25,19 +31,19 @@ public class PlayerController : Status
     private Vector3 randomAngle;
 
     [SerializeField] private GameObject boostEffectPrefab;
-    [SerializeField] private float boostStartSpeed;
+    [SerializeField] private GameObject LazerEffectPrefab;
 
-    [SerializeField] private float immortalTime;
-    private float immortalTimer;
+    [SerializeField] private float boostStartSpeed;[Tooltip("부스터를 발동할 수 있는 최소 속력")]
 
-    //private bool isMeleeAttack;
+    [SerializeField] private float immortalTime; private float immortalTimer; //무적 타이머
+
     private bool isAttacked = false;
 
-    private bool isFire = false;
+    //private bool isMeleeAttack;
 
     private Rigidbody myRig;
     private Animator myAnim;
-    [SerializeField] private BoxCollider boxCol;
+    [SerializeField] private CapsuleCollider capCol;
 
     private Sabor theSabor;
 
@@ -48,13 +54,14 @@ public class PlayerController : Status
         thePlayer = GetComponent<PlayerController>();
         myRig = GetComponent<Rigidbody>();
         myAnim = GetComponent<Animator>();
-        boxCol = GetComponent<BoxCollider>();
+        capCol = GetComponent<CapsuleCollider>();
         theSabor = FindObjectOfType<Sabor>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        //Shoot();
+        LookAt();
+        TryMove(); // Character movement & boost
         DetectWeaponSelect();
     }
 
@@ -97,17 +104,15 @@ public class PlayerController : Status
         switch (weapon)
         {
             case WEAPONS.RIFLE:
-                //Debug.Log("rifle");
                 ShootRifle();
                 break;
 
             case WEAPONS.SHOTGUN:
-                //Debug.Log("shotgun");
                 ShootShotgun();
                 break;
 
             case WEAPONS.LAZER:
-                Debug.Log("lazer");
+                ShootLazer();
                 break;
 
             case WEAPONS.EMPTY:
@@ -118,13 +123,7 @@ public class PlayerController : Status
         }
     }
 
-    private void FixedUpdate()
-    {
-        LookAt();
-        TryMove(); // Character movement & boost
-    }
-
-    public override void GetDamage(int _damage)
+    public override void GetDamage(float _damage)
     {
         if (!isDead)
         {
@@ -194,7 +193,6 @@ public class PlayerController : Status
     //RIFLE 발사
     private void ShootRifle()
     {
-        Debug.Log("RIFLE");
         timer += Time.deltaTime;
         if (timer >= fireRate)
         {
@@ -211,7 +209,6 @@ public class PlayerController : Status
 
     private void ShootShotgun()
     {
-        Debug.Log("SHOTGUN");
         timer += Time.deltaTime;
         if (timer >= shotgunFireRate)
         {
@@ -231,6 +228,21 @@ public class PlayerController : Status
         }
     }
 
+    private void ShootLazer()
+    {
+        if (Input.GetButton("Fire1"))
+        {
+            myAnim.SetTrigger("Attack_Gun");
+            if (Physics.Raycast(shootingHand.transform.position, shootingHand.transform.forward, out hitInfo, lazerMaxDistance, attackLayer))
+            {
+                Vector3 lazerAngle = new Vector3(0f, GetDegree(myPosition, hitInfo.transform.position), 0f);
+                GameObject clone = Instantiate(LazerEffectPrefab, hitInfo.point, Quaternion.Euler(-lazerAngle));
+                hitInfo.transform.gameObject.GetComponent<Status>().GetDamage(lazerDamage);
+                Destroy(clone, 1.1f);
+            }
+        }
+    }
+
     // RED에게 피격시 잠시 무적
     private IEnumerator ImmortalFor(float _time)
     {
@@ -238,12 +250,12 @@ public class PlayerController : Status
         isAttacked = true;
         while (isAttacked)
         {
-            boxCol.enabled = false;
+            capCol.enabled = false;
             immortalTimer += Time.deltaTime; //시간 측정
             if (immortalTimer > _time)
             {
                 isAttacked = false;
-                boxCol.enabled = true;
+                capCol.enabled = true;
                 immortalTimer = 0;
                 yield return wait;
             }

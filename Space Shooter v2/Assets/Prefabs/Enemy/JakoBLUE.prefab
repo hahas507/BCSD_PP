@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6857189777393956607}
-  - component: {fileID: 8215779124022819448}
   - component: {fileID: 2754227323324250306}
   - component: {fileID: 1384012123}
   - component: {fileID: 687700875}
+  - component: {fileID: 2516126745558681394}
   m_Layer: 0
   m_Name: JakoBLUE
   m_TagString: Jako
@@ -35,19 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8215779124022819448
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6857189777393956606}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.6777573, y: 10.546436, z: 3.7986183}
-  m_Center: {x: 0, y: 6.0537043, z: -0.39980316}
 --- !u!54 &2754227323324250306
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -110,6 +97,20 @@ MonoBehaviour:
   attackCycle: 5.4
   magazine: 8
   fireRate: 0.25
+--- !u!136 &2516126745558681394
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6857189777393956606}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 3.6
+  m_Height: 10
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6857189778366916300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -127,7 +128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1556519387392072959, guid: c82b016e7d181d24fbfeff29108744ce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: -0.16
       objectReference: {fileID: 0}
     - target: {fileID: 1556519387392072959, guid: c82b016e7d181d24fbfeff29108744ce, type: 3}
       propertyPath: m_LocalPosition.z

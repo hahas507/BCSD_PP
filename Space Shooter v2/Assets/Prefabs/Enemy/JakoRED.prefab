@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3033080488442672279}
-  - component: {fileID: -7664553648105283154}
   - component: {fileID: -5679675878163510671}
   - component: {fileID: -8815643248062307390}
   - component: {fileID: -3204819483520716241}
+  - component: {fileID: 5632866849015856804}
   m_Layer: 0
   m_Name: JakoRED
   m_TagString: Jako
@@ -29,25 +29,12 @@ Transform:
   m_GameObject: {fileID: 3500938767960215942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 812136841521859707}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &-7664553648105283154
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3500938767960215942}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.6777573, y: 10.546436, z: 3.7986183}
-  m_Center: {x: 0, y: 6.0537043, z: -0.39980316}
 --- !u!54 &-5679675878163510671
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -111,17 +98,32 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  rePathTime: 0.1
-  bashAngle: 180
-  bashRange: 60
+  rePathTime: 0.6
+  bashAngle: 130
+  bashRange: 100
   targetMask:
     serializedVersion: 2
     m_Bits: 128
-  bashSpeed: 500
+  bashSpeed: 750
   bashForThisSecond: 2
   bashCoolTime: 3
   normalSpeed: 75
   normalAngularSpeed: 700
+  explosionDamage: 15
+--- !u!136 &5632866849015856804
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3500938767960215942}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 3.4
+  m_Height: 10
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6502810704392247445
 GameObject:
   m_ObjectHideFlags: 0

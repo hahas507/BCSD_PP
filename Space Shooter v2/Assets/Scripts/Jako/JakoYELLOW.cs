@@ -15,6 +15,7 @@ public class JakoYELLOW : JakoParent
     private void Start()
     {
         agent.SetDestination(Waypoints[UnityEngine.Random.Range(0, Waypoints.Length)].position);
+        name = thisName;
     }
 
     protected override void Update()

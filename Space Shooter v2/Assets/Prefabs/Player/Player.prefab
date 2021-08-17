@@ -326,8 +326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42f7526bd70e374c9ea50a06db53cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisName: 
-  thisHP: 0
+  thisName: Player
+  thisHP: 30
   boostSpeed: 50
   playerSpeed: 6
   bulletPrefab: {fileID: 4147393132411265289, guid: 13811f49c45f0284ea7dfaad88f2e047, type: 3}

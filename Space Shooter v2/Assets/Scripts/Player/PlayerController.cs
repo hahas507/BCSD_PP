@@ -22,10 +22,16 @@ public class PlayerController : Status
     [SerializeField] private GameObject boostEffectPrefab;
     [SerializeField] private float boostStartSpeed;
 
+    [SerializeField] private float immortalTime;
+    private float immortalTimer;
+
     //private bool isMeleeAttack;
+    private bool isAttacked = false;
 
     private Rigidbody myRig;
     private Animator myAnim;
+    [SerializeField] private BoxCollider boxCol;
+
     private Sabor theSabor;
     private FireIndicator theFireIndicator;
 
@@ -36,6 +42,7 @@ public class PlayerController : Status
         thePlayer = GetComponent<PlayerController>();
         myRig = GetComponent<Rigidbody>();
         myAnim = GetComponent<Animator>();
+        boxCol = GetComponent<BoxCollider>();
         theSabor = FindObjectOfType<Sabor>();
         theFireIndicator = FindObjectOfType<FireIndicator>();
     }
@@ -54,11 +61,16 @@ public class PlayerController : Status
 
     public override void GetDamage(int _damage)
     {
-        base.GetDamage(_damage);
-
-        if (currentHP <= 0 && !isDead)
+        if (!isDead)
         {
-            thePlayer.enabled = false;
+            base.GetDamage(_damage);
+
+            StartCoroutine(ImmortalFor(immortalTime));
+            if (currentHP <= 0 && !isDead)
+            {
+                thePlayer.enabled = false;
+                isDead = true;
+            }
         }
     }
 
@@ -130,6 +142,25 @@ public class PlayerController : Status
                 Destroy(clone, 3f);
                 timer = 0f;
             }
+        }
+    }
+
+    private IEnumerator ImmortalFor(float _time)
+    {
+        YieldInstruction wait = new WaitForSeconds(_time);
+        isAttacked = true;
+        while (isAttacked)
+        {
+            boxCol.enabled = false;
+            immortalTimer += Time.deltaTime; //시간 측정
+            if (immortalTimer > _time)
+            {
+                isAttacked = false;
+                boxCol.enabled = true;
+                immortalTimer = 0;
+                yield return wait;
+            }
+            yield return null;
         }
     }
 

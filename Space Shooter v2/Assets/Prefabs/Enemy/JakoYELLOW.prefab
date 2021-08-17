@@ -90,10 +90,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6317118282228364146}
-  - component: {fileID: 8468885978340354199}
   - component: {fileID: 1250499093369835615}
   - component: {fileID: -6443411402911046724}
   - component: {fileID: -9158477263036613089}
+  - component: {fileID: 6694050243799903961}
   m_Layer: 0
   m_Name: JakoYELLOW
   m_TagString: Jako
@@ -110,25 +110,12 @@ Transform:
   m_GameObject: {fileID: 4035667851419562586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 7400820732439934194}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8468885978340354199
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4035667851419562586}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.6777573, y: 10.546436, z: 3.7986183}
-  m_Center: {x: 0, y: 6.0537043, z: -0.39980316}
 --- !u!54 &1250499093369835615
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,7 +142,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2
-  m_Speed: 75
+  m_Speed: 150
   m_Acceleration: 250
   avoidancePriority: 50
   m_AngularSpeed: 700
@@ -185,8 +172,32 @@ MonoBehaviour:
   rigid: {fileID: 1250499093369835615}
   agent: {fileID: -6443411402911046724}
   target: {fileID: 0}
-  Waypoints: []
+  Waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   rePathTime: 0.3
+  magazine: 4
+  ZacoBullet: {fileID: 217198129246179318, guid: 3511ba807e814b94e8efc7c201244cd9, type: 3}
+  attackCycle: 4.2
+  fireRate: 0.3
+--- !u!136 &6694050243799903961
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035667851419562586}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 3.4
+  m_Height: 10
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!43 &-6304405499055834171
 Mesh:
   m_ObjectHideFlags: 0

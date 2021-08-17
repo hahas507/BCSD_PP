@@ -6,8 +6,10 @@ using UnityEngine.AI;
 public abstract class JakoParent : Status
 {
     [SerializeField] protected GameObject deathParticlePrefab;
+
     [SerializeField] protected Rigidbody rigid;
     [SerializeField] protected NavMeshAgent agent;
+
     [SerializeField] protected Transform target; //Player
     [SerializeField] protected Transform[] Waypoints; //Around Player
 

@@ -15,12 +15,17 @@ public class JakoRED : JakoParent
     [SerializeField] private float bashForThisSecond;
     [SerializeField] private float bashCoolTime;
 
-    [SerializeField] protected float normalSpeed; //navMesh speed
-    [SerializeField] protected float normalAngularSpeed;
+    [SerializeField] private float normalSpeed; //navMesh speed
+    [SerializeField] private float normalAngularSpeed;
+
+    [SerializeField] private int explosionDamage;
+
+    private bool isExploding = false;
 
     private void Start()
     {
         agent.SetDestination(target.position);
+        name = thisName;
     }
 
     protected override void Update()
@@ -58,7 +63,6 @@ public class JakoRED : JakoParent
                         {
                             if (bashTimer >= bashCoolTime)
                             {
-                                Debug.Log("BASH!");
                                 bashTimer = 0;
                                 StartCoroutine(StartBash(bashForThisSecond));
                             }
@@ -75,13 +79,32 @@ public class JakoRED : JakoParent
         bashTimer += Time.deltaTime;
         while (bashTimer <= bashForThisSecond)
         {
-            Debug.Log("BASH!");
             agent.speed = bashSpeed;
             yield return wait;
         }
 
         agent.speed = normalSpeed;
-        Debug.Log("NORMAL!");
         yield return null;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "Player" && !isDead && !isExploding)
+        {
+            isDead = true;
+            isExploding = true;
+
+            rigid.isKinematic = false;
+
+            if (isDead && isExploding)
+            {
+                agent.enabled = false;
+                if (isExploding)
+                {
+                    other.GetComponent<Status>().GetDamage(explosionDamage);
+                    StartCoroutine(JakoDeathCoroutine());
+                }
+            }
+        }
     }
 }

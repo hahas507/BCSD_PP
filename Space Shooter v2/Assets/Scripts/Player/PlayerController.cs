@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class PlayerController : Status
 {
+    [SerializeField] private Transform targetPosition; //Look at the cursor.
     [SerializeField] private LayerMask attackLayer;
     [SerializeField] private float boostSpeed;
     [SerializeField] private float playerSpeed;
     private float applySpeed;
 
-    [SerializeField] private GameObject bulletPrefab;
     private float timer;
+    [SerializeField] private Transform shootingHand;
+    private Vector3 armAngle;
+    private Vector3 randomAngle;
     [SerializeField] private float fireRate;
     [SerializeField] private float fireAngle;
 
@@ -21,33 +24,46 @@ public class PlayerController : Status
     private RaycastHit hitInfo;
     [SerializeField] private float lazerMaxDistance;
     [SerializeField] private float lazerDamage;
+    [SerializeField] private float lazerGauge;
 
     private Vector3 myPosition; private Vector3 tarPosition;
 
-    [SerializeField] private Transform targetPosition; //Look at the cursor.
-
-    [SerializeField] private Transform shootingHand;
-    private Vector3 armAngle;
-    private Vector3 randomAngle;
-
+    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject boostEffectPrefab;
     [SerializeField] private GameObject LazerEffectPrefab;
 
     [SerializeField] private float boostStartSpeed;[Tooltip("부스터를 발동할 수 있는 최소 속력")]
+    [SerializeField] private int boosterAmount;
 
     [SerializeField] private float immortalTime; private float immortalTimer; //무적 타이머
 
     private bool isAttacked = false;
 
-    //private bool isMeleeAttack;
-
     private Rigidbody myRig;
     private Animator myAnim;
     [SerializeField] private CapsuleCollider capCol;
-
-    private Sabor theSabor;
-
     private PlayerController thePlayer;
+
+    //private Sabor theSabor;
+    //private bool isMeleeAttack;
+
+    public float CURRENTHP
+    {
+        get { return currentHP; }
+        private set { currentHP = value; }
+    }
+
+    public float BEAMGAUGE
+    {
+        get { return lazerGauge; }
+        private set { lazerGauge = value; }
+    }
+
+    public int BOOSTERGAUGE
+    {
+        get { return boosterAmount; }
+        private set { boosterAmount = value; }
+    }
 
     private void Start()
     {
@@ -55,7 +71,7 @@ public class PlayerController : Status
         myRig = GetComponent<Rigidbody>();
         myAnim = GetComponent<Animator>();
         capCol = GetComponent<CapsuleCollider>();
-        theSabor = FindObjectOfType<Sabor>();
+        //theSabor = FindObjectOfType<Sabor>();
     }
 
     private void FixedUpdate()

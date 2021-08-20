@@ -259,6 +259,7 @@ public class PlayerController : Status
         {
             if (Input.GetButton("Fire1"))
             {
+                isLazerOnFire = false;
                 myAnim.SetTrigger("Attack_Gun");
                 randomAngle = new Vector3(0f, UnityEngine.Random.Range(GetDegree(myPosition, tarPosition) - fireAngle, GetDegree(myPosition, tarPosition) + fireAngle), 0f);
                 var clone = Instantiate(bulletPrefab, shootingHand.position + (transform.forward * 2.2f), Quaternion.Euler(-randomAngle));
@@ -275,6 +276,7 @@ public class PlayerController : Status
         {
             if (Input.GetButton("Fire1"))
             {
+                isLazerOnFire = false;
                 myAnim.SetTrigger("Attack_Gun");
 
                 for (int i = 0; i < shotgunBulletCount; i++)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class PlayerUI : MonoBehaviour
     private float maxHP;
     private float maxLazer;
     private int maxBooster;
+
+    [SerializeField] private Image[] imageGauge;
+
+    private const int HP = 0, BOOSTER = 1, LAZER = 2;
 
     private void Start()
     {
@@ -19,6 +24,8 @@ public class PlayerUI : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(thePlayer.CURRENTHP);
+        imageGauge[HP].fillAmount = thePlayer.CURRENTHP / maxHP;
+        imageGauge[BOOSTER].fillAmount = (float)thePlayer.BOOSTERGAUGE / maxBooster;
+        imageGauge[LAZER].fillAmount = thePlayer.BEAMGAUGE / maxLazer;
     }
 }

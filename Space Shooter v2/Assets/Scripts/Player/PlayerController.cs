@@ -24,7 +24,7 @@ public class PlayerController : Status
     private RaycastHit hitInfo;
     [SerializeField] private float lazerMaxDistance;
     [SerializeField] private float lazerDamage;
-    [SerializeField] private float lazerGauge;
+    [SerializeField] private float maxLazerGauge; private float currentLazerGauge;
 
     private Vector3 myPosition; private Vector3 tarPosition;
 
@@ -33,11 +33,16 @@ public class PlayerController : Status
     [SerializeField] private GameObject LazerEffectPrefab;
 
     [SerializeField] private float boostStartSpeed;[Tooltip("부스터를 발동할 수 있는 최소 속력")]
-    [SerializeField] private int boosterAmount;
+    [SerializeField] private int maxBoosterCount; private int currentBoosterLeft;
+
+    private bool isBoosterRecovering = false;
+    private bool canLazerRecover = false;
+    private bool isLazerOnFire = false;
 
     [SerializeField] private float immortalTime; private float immortalTimer; //무적 타이머
-
     private bool isAttacked = false;
+
+    [SerializeField] private GameObject UI;
 
     private Rigidbody myRig;
     private Animator myAnim;
@@ -47,6 +52,8 @@ public class PlayerController : Status
     //private Sabor theSabor;
     //private bool isMeleeAttack;
 
+    #region Status
+
     public float CURRENTHP
     {
         get { return currentHP; }
@@ -55,14 +62,23 @@ public class PlayerController : Status
 
     public float BEAMGAUGE
     {
-        get { return lazerGauge; }
-        private set { lazerGauge = value; }
+        get { return currentLazerGauge; }
+        private set { currentLazerGauge = value; }
     }
 
     public int BOOSTERGAUGE
     {
-        get { return boosterAmount; }
-        private set { boosterAmount = value; }
+        get { return currentBoosterLeft; }
+        private set { currentBoosterLeft = value; }
+    }
+
+    #endregion Status
+
+    protected override void Awake()
+    {
+        base.Awake();
+        currentBoosterLeft = maxBoosterCount;
+        currentLazerGauge = maxLazerGauge;
     }
 
     private void Start()
@@ -79,6 +95,8 @@ public class PlayerController : Status
         LookAt();
         TryMove(); // Character movement & boost
         DetectWeaponSelect();
+        UIfollow();
+        LazerRecharge();
     }
 
     public enum WEAPONS
@@ -180,6 +198,8 @@ public class PlayerController : Status
         transform.eulerAngles = -armAngle;
     }
 
+    #region Move+Booster
+
     private void TryMove()
     {
         applySpeed = playerSpeed;
@@ -190,21 +210,46 @@ public class PlayerController : Status
         float currentMoveSpeedX = myRig.velocity.x;
         float currentMoveSpeedY = myRig.velocity.z;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && currentBoosterLeft > 0)
         {
             applySpeed = boostSpeed;
+
             myRig.AddForce(playerMove * applySpeed, ForceMode.VelocityChange);
             if (Mathf.Abs(currentMoveSpeedX) > boostStartSpeed || Mathf.Abs(currentMoveSpeedY) > boostStartSpeed)
             {
+                currentBoosterLeft -= 1;
                 var clone = Instantiate(boostEffectPrefab, transform.position, Quaternion.LookRotation(-transform.right));
                 Destroy(clone, 3f);
 
                 myAnim.SetTrigger("Booster");
+                if (!isBoosterRecovering)
+                {
+                    isBoosterRecovering = true;
+                    StartCoroutine(BoosterRecoverCoroutine());
+                }
             }
         }
 
         myRig.AddForce(playerMove * applySpeed, ForceMode.VelocityChange);
     }
+
+    private IEnumerator BoosterRecoverCoroutine()
+    {
+        YieldInstruction wait = new WaitForSeconds(1.75f);
+        while (isBoosterRecovering)
+        {
+            yield return wait; //n초 쉬고
+
+            currentBoosterLeft += 1;
+            if (currentBoosterLeft >= maxBoosterCount)
+            {
+                currentBoosterLeft = maxBoosterCount;
+                isBoosterRecovering = false;
+            }
+        }
+    }
+
+    #endregion Move+Booster
 
     //RIFLE 발사
     private void ShootRifle()
@@ -244,10 +289,16 @@ public class PlayerController : Status
         }
     }
 
+    #region Lazer
+
     private void ShootLazer()
     {
-        if (Input.GetButton("Fire1"))
+        isLazerOnFire = false;
+        if (Input.GetButton("Fire1") && currentLazerGauge > 0)
         {
+            isLazerOnFire = true;
+            canLazerRecover = false;
+            currentLazerGauge -= .3f;
             myAnim.SetTrigger("Attack_Gun");
             if (Physics.Raycast(shootingHand.transform.position, shootingHand.transform.forward, out hitInfo, lazerMaxDistance, attackLayer))
             {
@@ -258,6 +309,33 @@ public class PlayerController : Status
             }
         }
     }
+
+    private void LazerRecharge()
+    {
+        if (currentLazerGauge < maxLazerGauge && !isLazerOnFire && !canLazerRecover)
+        {
+            canLazerRecover = true;
+            StartCoroutine(LazerGaugeRecoverCoroutine());
+        }
+    }
+
+    private IEnumerator LazerGaugeRecoverCoroutine()
+    {
+        yield return new WaitForSeconds(2);
+
+        while (canLazerRecover && !isLazerOnFire)
+        {
+            currentLazerGauge += 1f;
+            if (currentLazerGauge >= maxLazerGauge)
+            {
+                canLazerRecover = false;
+                currentLazerGauge = maxLazerGauge;
+            }
+            yield return new WaitForSeconds(.05f);
+        }
+    }
+
+    #endregion Lazer
 
     // RED에게 피격시 잠시 무적
     private IEnumerator ImmortalFor(float _time)
@@ -277,6 +355,12 @@ public class PlayerController : Status
             }
             yield return null;
         }
+    }
+
+    private void UIfollow()
+    {
+        Vector3 UIposition = Camera.main.WorldToScreenPoint(transform.position);
+        UI.transform.position = UIposition;
     }
 
     //private void MeleeAttack()

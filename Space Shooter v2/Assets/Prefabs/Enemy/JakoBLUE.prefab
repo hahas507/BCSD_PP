@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisName: Jako BLUE
-  thisHP: 10
+  thisHP: 5
   deathParticlePrefab: {fileID: 8440117091162997854, guid: be69a9148294868429effa1b9682ee9a, type: 3}
   rigid: {fileID: 2754227323324250306}
   agent: {fileID: 1384012123}

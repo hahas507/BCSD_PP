@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3347229304907355935}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
+  m_LocalRotation: {x: -1, y: 0, z: -0, w: 0}
   m_LocalPosition: {x: -0.00000019073487, y: 0.050000098, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6317118282228364146}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: -180}
 --- !u!23 &60548976739507411
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -51,7 +51,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4501837091004714109}
+  - {fileID: -3030910465983561455, guid: 77e5ad79ab770824ba3e85160d6fbe03, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,7 +80,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3347229304907355935}
-  m_Mesh: {fileID: -6304405499055834171}
+  m_Mesh: {fileID: -6837357697427851938, guid: 77e5ad79ab770824ba3e85160d6fbe03, type: 3}
 --- !u!1 &4035667851419562586
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: -6443411402911046724}
   - component: {fileID: -9158477263036613089}
   - component: {fileID: 6694050243799903961}
+  - component: {fileID: 1447635959}
   m_Layer: 8
   m_Name: JakoYELLOW
   m_TagString: Jako
@@ -167,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisName: Jako YELLOW
-  thisHP: 20
+  thisHP: 5
   deathParticlePrefab: {fileID: 8440117091162997854, guid: be69a9148294868429effa1b9682ee9a, type: 3}
   rigid: {fileID: 1250499093369835615}
   agent: {fileID: -6443411402911046724}
@@ -197,6 +198,19 @@ CapsuleCollider:
   m_Radius: 3.4
   m_Height: 12
   m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &1447635959
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035667851419562586}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!43 &-6304405499055834171
 Mesh:

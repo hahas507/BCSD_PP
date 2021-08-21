@@ -30,7 +30,8 @@ public class PlayerController : Status
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject boostEffectPrefab;
-    [SerializeField] private GameObject LazerEffectPrefab;
+    [SerializeField] private GameObject LazerHitEffectPrefab;
+    [SerializeField] private ParticleSystem lazerShootEffect;
 
     [SerializeField] private float boostStartSpeed;[Tooltip("부스터를 발동할 수 있는 최소 속력")]
     [SerializeField] private int maxBoosterCount; private int currentBoosterLeft;
@@ -301,11 +302,12 @@ public class PlayerController : Status
             isLazerOnFire = true;
             canLazerRecover = false;
             currentLazerGauge -= .3f;
+            lazerShootEffect.Play();
             myAnim.SetTrigger("Attack_Gun");
             if (Physics.Raycast(shootingHand.transform.position, shootingHand.transform.forward, out hitInfo, lazerMaxDistance, attackLayer))
             {
                 Vector3 lazerAngle = new Vector3(0f, GetDegree(myPosition, hitInfo.transform.position), 0f);
-                GameObject clone = Instantiate(LazerEffectPrefab, hitInfo.point, Quaternion.Euler(-lazerAngle));
+                GameObject clone = Instantiate(LazerHitEffectPrefab, hitInfo.point, Quaternion.Euler(-lazerAngle));
                 hitInfo.transform.gameObject.GetComponent<Status>().GetDamage(lazerDamage);
                 Destroy(clone, 1.1f);
             }
@@ -316,6 +318,7 @@ public class PlayerController : Status
     {
         if (currentLazerGauge < maxLazerGauge && !isLazerOnFire && !canLazerRecover)
         {
+            lazerShootEffect.Stop();
             canLazerRecover = true;
             StartCoroutine(LazerGaugeRecoverCoroutine());
         }

@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret : Status
 {
+    [SerializeField] private GameObject waypointForMechaTrooper;
     [SerializeField] private GameObject turret;
     [SerializeField] private float viewRadius;
 
@@ -19,7 +20,6 @@ public class Turret : MonoBehaviour
     [SerializeField] private LayerMask targetMask;
     private Vector3 targetDirection;
 
-    private float startAngle;
     private RaycastHit hitInfo;
     private Vector3 turretPosition;
     private Vector3 tarPosition;
@@ -27,14 +27,28 @@ public class Turret : MonoBehaviour
     private float turretTimer;
     [SerializeField] private float turretShootCycle;
 
-    private void Awake()
+    private Turret theTurret;
+
+    protected override void Awake()
     {
-        startAngle = transform.rotation.y;
+        base.Awake();
+        theTurret = GetComponent<Turret>();
     }
 
     private void Update()
     {
         FindrTarget();
+    }
+
+    public override void GetDamage(float _damage)
+    {
+        base.GetDamage(_damage);
+        if (currentHP <= 0)
+        {
+            waypointForMechaTrooper.SetActive(true);
+            //DestroyAnimationNeeded;
+            theTurret.enabled = false;
+        }
     }
 
     private void FindrTarget()

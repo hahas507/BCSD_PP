@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae9fefcea654404192db7526d3b160c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisName: 
+  thisHP: 0
   turret: {fileID: 0}
   viewRadius: 0
   viewAngle: 0
@@ -54,160 +56,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   turretShootCycle: 0
---- !u!1 &1238936607
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1238936608}
-  m_Layer: 0
-  m_Name: Waypoint_01
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1238936608
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1238936607}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: 0, z: 50}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1592385917}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1537500301
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1537500302}
-  m_Layer: 0
-  m_Name: Waypoint_03
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1537500302
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537500301}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50, y: 0, z: -80}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1592385917}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1578082290
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1578082291}
-  m_Layer: 0
-  m_Name: Waypoint_02
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1578082291
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578082290}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50, y: 0, z: 50}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1592385917}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1592385916
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1592385917}
-  m_Layer: 0
-  m_Name: Waypoints
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1592385917
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1592385916}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1238936608}
-  - {fileID: 1578082291}
-  - {fileID: 1537500302}
-  - {fileID: 1986514055}
-  m_Father: {fileID: 2060285546826720087}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1986514054
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1986514055}
-  m_Layer: 0
-  m_Name: Waypoint_04
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1986514055
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986514054}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: 0, z: -80}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1592385917}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &461237924141948306
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,9 +150,10 @@ GameObject:
   - component: {fileID: 1657719943232871970}
   - component: {fileID: 1982581807}
   - component: {fileID: 4478472508870659673}
+  - component: {fileID: 454000104}
   m_Layer: 0
   m_Name: Warship
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -322,7 +171,6 @@ Transform:
   m_Children:
   - {fileID: 1841102990250927260}
   - {fileID: 2040012506624139500}
-  - {fileID: 1592385917}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -336,8 +184,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 30
-  m_Speed: 500
-  m_Acceleration: 500
+  m_Speed: 120
+  m_Acceleration: 60
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -361,7 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisName: Warship
-  thisHP: 3500
+  thisHP: 10
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -380,6 +228,22 @@ CapsuleCollider:
   m_Height: 70
   m_Direction: 2
   m_Center: {x: 0, y: 7, z: 0}
+--- !u!54 &454000104
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2846021876308148189}
+  serializedVersion: 2
+  m_Mass: 3
+  m_Drag: 1
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
 --- !u!1 &4494778672795085798
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +286,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1841102990250927260}
     m_Modifications:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
+      propertyPath: thisHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: turret
       value: 
       objectReference: {fileID: 6053719299883969726}
@@ -432,6 +300,10 @@ PrefabInstance:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: magazine
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
+      propertyPath: thisName
+      value: Turret
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: fireAngle
@@ -521,6 +393,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1841102990250927260}
     m_Modifications:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
+      propertyPath: thisHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: turret
       value: 
       objectReference: {fileID: 7055016471211208902}
@@ -531,6 +407,10 @@ PrefabInstance:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: magazine
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
+      propertyPath: thisName
+      value: Turret
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: fireAngle
@@ -620,6 +500,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1841102990250927260}
     m_Modifications:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
+      propertyPath: thisHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: turret
       value: 
       objectReference: {fileID: 940997322044992557}
@@ -630,6 +514,10 @@ PrefabInstance:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: magazine
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
+      propertyPath: thisName
+      value: Turret
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: fireAngle
@@ -701,14 +589,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
---- !u!1 &940997322044992557 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4951792756511382300, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
-  m_PrefabInstance: {fileID: 5311808098701375281}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &979930567059351919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4912931288957967966, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
+  m_PrefabInstance: {fileID: 5311808098701375281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &940997322044992557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4951792756511382300, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
   m_PrefabInstance: {fileID: 5311808098701375281}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6904969596950958171
@@ -718,6 +606,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841102990250927260}
     m_Modifications:
+    - target: {fileID: -9072167410684627220, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
+      propertyPath: m_Height
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -9072167410684627220, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
+      propertyPath: m_Center.y
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
+      propertyPath: thisHP
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: turret
       value: 
@@ -729,6 +629,10 @@ PrefabInstance:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: magazine
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
+      propertyPath: thisName
+      value: Turret
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: fireAngle
@@ -800,14 +704,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
---- !u!1 &1975721261889014599 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4951792756511382300, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
-  m_PrefabInstance: {fileID: 6904969596950958171}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2016871259817610757 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4912931288957967966, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
+  m_PrefabInstance: {fileID: 6904969596950958171}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1975721261889014599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4951792756511382300, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
   m_PrefabInstance: {fileID: 6904969596950958171}
   m_PrefabAsset: {fileID: 0}
 --- !u!28 &-8064279797838391432

@@ -5681,7 +5681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisName: Player
-  thisHP: 3000
+  thisHP: 50
   targetPosition: {fileID: 0}
   attackLayer:
     serializedVersion: 2
@@ -6096,6 +6096,18 @@ PrefabInstance:
     - target: {fileID: 3845348106600019120, guid: 1447c0f67297b9943af0cfe9b90dbb2a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 111.499
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265404843752732144, guid: 1447c0f67297b9943af0cfe9b90dbb2a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265404843752732144, guid: 1447c0f67297b9943af0cfe9b90dbb2a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265404843752732144, guid: 1447c0f67297b9943af0cfe9b90dbb2a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4265404843752732144, guid: 1447c0f67297b9943af0cfe9b90dbb2a, type: 3}
       propertyPath: m_LocalRotation.w

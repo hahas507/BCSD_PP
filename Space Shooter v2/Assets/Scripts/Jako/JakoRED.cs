@@ -25,7 +25,6 @@ public class JakoRED : JakoParent
     private void Start()
     {
         agent.SetDestination(target.position);
-        name = thisName;
     }
 
     protected override void Update()

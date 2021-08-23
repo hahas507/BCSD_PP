@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8782819498127519632}
   - component: {fileID: 5801736985359273739}
   m_Layer: 10
-  m_Name: Bullet
+  m_Name: TurretBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffdb8746baff3a5408c3bc0100135cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 175
-  isThisPlayer: 1
+  bulletSpeed: 150
+  isThisPlayer: 0
   bulletDamage: 1
   hitParticlePrefab: {fileID: 3287692079780859339, guid: 3fabe2a3318f60d438f1029f2d45c3bf, type: 3}
 --- !u!65 &5801736985359273739
@@ -215,7 +215,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.8389136, g: 0.8679245, b: 0.07778566, a: 1}
+      key0: {r: 0, g: 0.9069618, b: 0.9245283, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}

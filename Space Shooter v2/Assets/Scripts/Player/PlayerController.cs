@@ -11,29 +11,41 @@ public class PlayerController : Status
     [SerializeField] private float playerSpeed;
     private float applySpeed;
 
-    private float timer;
+    [Header("Rifle")]
     [SerializeField] private Transform shootingHand;
-    private Vector3 armAngle;
-    private Vector3 randomAngle;
+
     [SerializeField] private float fireRate;
     [SerializeField] private float fireAngle;
+    private Vector3 armAngle;
+    private Vector3 randomAngle;
+    private float timer;
+
+    [Header("Shotgun")]
 
     [SerializeField] private int shotgunBulletCount;[Tooltip("한번에 발사할 총알 수")]
+
     [SerializeField] private float shotgunFireRate;
 
+    [Header("Lazer")]
     private RaycastHit hitInfo;
+
     [SerializeField] private float lazerMaxDistance;
     [SerializeField] private float lazerDamage;
     [SerializeField] private float maxLazerGauge; private float currentLazerGauge;
 
     private Vector3 myPosition; private Vector3 tarPosition;
 
+    [Header("Particle Prefabs")]
     [SerializeField] private GameObject bulletPrefab;
+
     [SerializeField] private GameObject boostEffectPrefab;
     [SerializeField] private GameObject LazerHitEffectPrefab;
     [SerializeField] private ParticleSystem lazerShootEffect;
 
+    [Header("Extra")]
+
     [SerializeField] private float boostStartSpeed;[Tooltip("부스터를 발동할 수 있는 최소 속력")]
+
     [SerializeField] private int maxBoosterCount; private int currentBoosterLeft;
 
     private bool isBoosterRecovering = false;
@@ -219,7 +231,7 @@ public class PlayerController : Status
             if (Mathf.Abs(currentMoveSpeedX) > boostStartSpeed || Mathf.Abs(currentMoveSpeedY) > boostStartSpeed)
             {
                 currentBoosterLeft -= 1;
-                var clone = Instantiate(boostEffectPrefab, transform.position, Quaternion.LookRotation(-transform.right));
+                GameObject clone = Instantiate(boostEffectPrefab, transform.position, Quaternion.LookRotation(-transform.right));
                 Destroy(clone, 3f);
 
                 myAnim.SetTrigger("Booster");
@@ -263,7 +275,7 @@ public class PlayerController : Status
                 isLazerOnFire = false;
                 myAnim.SetTrigger("Attack_Gun");
                 randomAngle = new Vector3(0f, UnityEngine.Random.Range(GetDegree(myPosition, tarPosition) - fireAngle, GetDegree(myPosition, tarPosition) + fireAngle), 0f);
-                var clone = Instantiate(bulletPrefab, shootingHand.position + (transform.forward * 2.2f), Quaternion.Euler(-randomAngle));
+                GameObject clone = Instantiate(bulletPrefab, shootingHand.position + (transform.forward * 2.2f), Quaternion.Euler(-randomAngle));
                 Destroy(clone, 3f);
                 timer = 0f;
             }
@@ -283,7 +295,7 @@ public class PlayerController : Status
                 for (int i = 0; i < shotgunBulletCount; i++)
                 {
                     randomAngle = new Vector3(0f, UnityEngine.Random.Range(GetDegree(myPosition, tarPosition) - fireAngle * 2, GetDegree(myPosition, tarPosition) + fireAngle * 2), 0f);
-                    var clone = Instantiate(bulletPrefab, shootingHand.position + (transform.forward * 2.2f), Quaternion.Euler(-randomAngle));
+                    GameObject clone = Instantiate(bulletPrefab, shootingHand.position + (transform.forward * 2.2f), Quaternion.Euler(-randomAngle));
                     Destroy(clone, 1f);
                 }
 

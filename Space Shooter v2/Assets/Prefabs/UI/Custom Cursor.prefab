@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resizeTo: 0.01
-  maxDistance: 50
+  maxDistance: 75
   playerPosition: {fileID: 0}
 --- !u!1 &4419549824754972386
 GameObject:

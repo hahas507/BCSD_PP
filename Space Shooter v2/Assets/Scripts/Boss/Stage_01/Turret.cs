@@ -26,6 +26,10 @@ public class Turret : Status
     private Vector3 turretAngle;
     private float turretTimer;
     [SerializeField] private float turretShootCycle;
+    private Warship theWarship;
+    [SerializeField] private float turretDestroyDamage;
+    [SerializeField] private GameObject hitParticlePrefab;
+    [SerializeField] private GameObject turretDownParticle;
 
     private Turret theTurret;
 
@@ -33,25 +37,43 @@ public class Turret : Status
     {
         base.Awake();
         theTurret = GetComponent<Turret>();
+        theWarship = FindObjectOfType<Warship>();
     }
 
     private void Update()
     {
-        FindrTarget();
+        FindTarget();
     }
 
     public override void GetDamage(float _damage)
     {
         base.GetDamage(_damage);
-        if (currentHP <= 0)
+        if (!isDead)
         {
-            waypointForMechaTrooper.SetActive(true);
-            //DestroyAnimationNeeded;
-            theTurret.enabled = false;
+            GameObject clone = Instantiate(hitParticlePrefab, transform.position, Quaternion.Euler(turretAngle));
+            Destroy(clone, 1.5f);
+            if (currentHP <= 0)
+            {
+                isDead = true;
+                waypointForMechaTrooper.SetActive(true);
+                theWarship.GetDamage(turretDestroyDamage);
+                StartCoroutine(TurretDown());
+                theTurret.enabled = false;
+            }
         }
     }
 
-    private void FindrTarget()
+    private IEnumerator TurretDown()
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            GameObject clone = Instantiate(turretDownParticle, transform.position, Quaternion.Euler(turretAngle));
+            Destroy(clone, 1.5f);
+            yield return new WaitForSeconds(.2f);
+        }
+    }
+
+    private void FindTarget()
     {
         turretTimer += Time.deltaTime;
 

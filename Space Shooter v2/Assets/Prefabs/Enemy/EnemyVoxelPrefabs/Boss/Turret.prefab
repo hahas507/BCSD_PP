@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1043314674995173709}
   - component: {fileID: -9072167410684627220}
   - component: {fileID: 3878770937909806530}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Turret
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae9fefcea654404192db7526d3b160c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisName: 
-  thisHP: 0
+  thisName: Turret
+  thisHP: 50
   waypointForMechaTrooper: {fileID: 4470458878688543599}
   turret: {fileID: 4951792756511382300}
   viewRadius: 0
@@ -61,6 +61,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   turretShootCycle: 0
+  turretDestroyDamage: 0
+  hitParticlePrefab: {fileID: 8440117091162997854, guid: 1a8c56bd75e49624f9b1d69a7678125b, type: 3}
+  turretDownParticle: {fileID: 8440117091162997854, guid: 43e08f1abab798643a3802d530ec3532, type: 3}
 --- !u!136 &-9072167410684627220
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -100,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3672651799730933637}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Waypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +135,7 @@ GameObject:
   - component: {fileID: 8652676982718609604}
   - component: {fileID: 3562506853497115218}
   - component: {fileID: 7171503141747342000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

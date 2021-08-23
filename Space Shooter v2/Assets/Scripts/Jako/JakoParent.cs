@@ -13,7 +13,7 @@ public abstract class JakoParent : Status
     [SerializeField] protected Transform target; //Player
     [SerializeField] protected Transform[] Waypoints; //Around Player
 
-    [SerializeField] protected float rePathTime;
+    [SerializeField] protected float repathTime;
     protected float repathTimer; //경로 타이머
 
     protected override void Awake()
@@ -55,7 +55,7 @@ public abstract class JakoParent : Status
     protected IEnumerator RandomPathFind()
     {
         YieldInstruction wait = new WaitForSeconds(2);
-        while (repathTimer >= rePathTime)
+        while (repathTimer >= repathTime)
         {
             agent.SetDestination(Waypoints[UnityEngine.Random.Range(0, Waypoints.Length)].position);
             repathTimer = 0;
@@ -66,7 +66,7 @@ public abstract class JakoParent : Status
     protected IEnumerator PathFind()
     {
         YieldInstruction wait = new WaitForSeconds(2);
-        while (repathTimer >= rePathTime)
+        while (repathTimer >= repathTime)
         {
             agent.SetDestination(target.position);
             repathTimer = 0;

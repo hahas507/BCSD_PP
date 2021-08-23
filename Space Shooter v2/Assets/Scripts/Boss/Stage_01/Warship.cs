@@ -11,6 +11,12 @@ public class Warship : Status
     private int currentWaypoint;
     private CapsuleCollider capCol;
 
+    public float CURRENTSPEED
+    {
+        get { return navMesh.speed; }
+        set { navMesh.speed = value; }
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -23,6 +29,7 @@ public class Warship : Status
     private void Update()
     {
         MoveToNextWaypoint();
+        Debug.Log(currentHP);
     }
 
     private void MoveToNextWaypoint()

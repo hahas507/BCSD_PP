@@ -12,6 +12,7 @@ public class MechaTrooper : Status
     {
         base.Awake();
         navMesh = GetComponent<NavMeshAgent>();
+        navMesh.SetDestination(waypoints[0].position);
     }
 
     public override void GetDamage(float _damage)

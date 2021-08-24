@@ -10,6 +10,7 @@ public class Warship : Status
     [SerializeField] private Transform[] waypoints;
     private int currentWaypoint;
     private CapsuleCollider capCol;
+    private bool isStopped = false;
 
     public float CURRENTSPEED
     {
@@ -29,15 +30,27 @@ public class Warship : Status
     private void Update()
     {
         MoveToNextWaypoint();
-        Debug.Log(currentHP);
+        Debug.Log(isStopped);
     }
 
     private void MoveToNextWaypoint()
     {
-        if (navMesh.remainingDistance <= navMesh.stoppingDistance)
+        if (Vector3.Distance(transform.position, waypoints[currentWaypoint].position) < 1 && !isStopped)
         {
+            StartCoroutine(SetDestination());
+        }
+    }
+
+    private IEnumerator SetDestination()
+    {
+        if (!isStopped)
+        {
+            isStopped = true;
+            yield return new WaitForSeconds(3);
             currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
             navMesh.SetDestination(waypoints[currentWaypoint].position);
+
+            isStopped = false;
         }
     }
 }

@@ -7,6 +7,8 @@ public class Engine : Status
     private Warship theWarship;
     private float hpToPercentage;
     private float startSpeed;
+    [SerializeField] private float engindDownDamage;
+    private Engine theEngine;
 
     protected override void Awake()
     {
@@ -22,7 +24,16 @@ public class Engine : Status
     public override void GetDamage(float _damage)
     {
         base.GetDamage(_damage);
-        theWarship.CURRENTSPEED = startSpeed * (hpToPercentage / 100);
+        if (!isDead)
+        {
+            theWarship.CURRENTSPEED = startSpeed * (hpToPercentage / 100);
+            if (currentHP <= 0)
+            {
+                isDead = true;
+                theWarship.GetDamage(engindDownDamage);
+                theEngine.enabled = false;
+            }
+        }
     }
 
     private void Update()

@@ -409,7 +409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resizeTo: 0.01
   maxDistance: 75
-  playerPosition: {fileID: 0}
+  playerPosition: {fileID: 1426733533398958567, guid: bfb4612711868d04bb34a53593733459, type: 3}
 --- !u!1 &4419549824754972386
 GameObject:
   m_ObjectHideFlags: 0

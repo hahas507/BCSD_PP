@@ -5682,7 +5682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisName: Player
   thisHP: 100
-  targetPosition: {fileID: 0}
+  targetPosition: {fileID: 5592097832512110848, guid: 137a2aef6d9cd1f47bc0f5677abf3711, type: 3}
   attackLayer:
     serializedVersion: 2
     m_Bits: 768

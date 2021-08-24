@@ -10,9 +10,19 @@ public class JakoBLUE : JakoParent
     [SerializeField] private float attackCycle;
     [SerializeField] private int magazine;
     [SerializeField] private float fireRate;
+    private JakoBLUE theBLUE;
 
     private void Start()
     {
+        agent.enabled = false;
+        rigid.AddForce(transform.right * 100, ForceMode.Impulse);
+
+        Invoke("StartNav", 1.5f);
+    }
+
+    private void StartNav()
+    {
+        agent.enabled = true;
         agent.SetDestination(target.position);
     }
 

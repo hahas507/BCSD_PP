@@ -296,7 +296,7 @@ public class PlayerController : Status
                 {
                     randomAngle = new Vector3(0f, UnityEngine.Random.Range(GetDegree(myPosition, tarPosition) - fireAngle * 2, GetDegree(myPosition, tarPosition) + fireAngle * 2), 0f);
                     GameObject clone = Instantiate(bulletPrefab, shootingHand.position + (transform.forward * 2.2f), Quaternion.Euler(-randomAngle));
-                    Destroy(clone, 1f);
+                    Destroy(clone, .3f);
                 }
 
                 timer = 0f;
@@ -316,7 +316,7 @@ public class PlayerController : Status
             currentLazerGauge -= .3f;
             lazerShootEffect.Play();
             myAnim.SetTrigger("Attack_Gun");
-            if (Physics.Raycast(shootingHand.transform.position, shootingHand.transform.forward, out hitInfo, lazerMaxDistance, attackLayer))
+            if (Physics.Raycast(shootingHand.transform.position + shootingHand.transform.up, shootingHand.transform.forward, out hitInfo, lazerMaxDistance, attackLayer))
             {
                 Vector3 lazerAngle = new Vector3(0f, GetDegree(myPosition, hitInfo.transform.position), 0f);
                 GameObject clone = Instantiate(LazerHitEffectPrefab, hitInfo.point, Quaternion.Euler(-lazerAngle));

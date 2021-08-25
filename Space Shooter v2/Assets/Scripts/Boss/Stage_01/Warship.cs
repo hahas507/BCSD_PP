@@ -30,10 +30,6 @@ public class Warship : Status
         navMesh.SetDestination(waypoints[0].position);
     }
 
-    private void Start()
-    {
-    }
-
     private void Update()
     {
         MoveToNextWaypoint();
@@ -41,7 +37,7 @@ public class Warship : Status
 
     private void MoveToNextWaypoint()
     {
-        if (Vector3.Distance(transform.position, waypoints[currentWaypoint].position) < 1 && !isStopped)
+        if (navMesh.remainingDistance <= navMesh.stoppingDistance)
         {
             StartCoroutine(SetDestination());
         }
@@ -49,16 +45,16 @@ public class Warship : Status
 
     private IEnumerator SetDestination()
     {
-        if (!isStopped)
+        currentWaypoint++;
+        if (currentWaypoint == waypoints.Length)
         {
-            isStopped = true;
-            StartCoroutine(SpawnJakoBLUE(JakoSpawnRate));
-            yield return new WaitForSeconds(3);
-            currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
-            navMesh.SetDestination(waypoints[currentWaypoint].position);
-
-            isStopped = false;
+            currentWaypoint = 0;
         }
+        navMesh.SetDestination(waypoints[currentWaypoint].position);
+        navMesh.isStopped = true;
+        yield return new WaitForSeconds(3);
+        navMesh.isStopped = false;
+        StartCoroutine(SpawnJakoBLUE(JakoSpawnRate));
     }
 
     private IEnumerator SpawnJakoBLUE(float spawnRate)
@@ -67,7 +63,9 @@ public class Warship : Status
         yield return wait;
         for (int i = 0; i < spawnHowMany; i++)
         {
-            Instantiate(JakoBLUE, transform.position + (transform.right * 5), Quaternion.Euler(transform.forward));
+            Instantiate(JakoBLUE, transform.position + new Vector3(20, 6, 0), Quaternion.identity);
+            yield return wait;
+            Instantiate(JakoBLUE, transform.position + new Vector3(-20, 6, 0), Quaternion.identity);
             yield return wait;
         }
     }

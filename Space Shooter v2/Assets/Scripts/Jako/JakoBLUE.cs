@@ -15,7 +15,7 @@ public class JakoBLUE : JakoParent
     private void Start()
     {
         agent.enabled = false;
-        rigid.AddForce(transform.right * 100, ForceMode.Impulse);
+        rigid.AddForce(transform.forward * 100, ForceMode.Impulse);
 
         Invoke("StartNav", 1.5f);
     }
@@ -23,12 +23,11 @@ public class JakoBLUE : JakoParent
     private void StartNav()
     {
         agent.enabled = true;
-        agent.SetDestination(target.position);
     }
 
     protected override void Update()
     {
-        if (!isDead)
+        if (!isDead && agent.enabled)
         {
             BlueAttack();
 

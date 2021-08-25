@@ -10,7 +10,7 @@ public abstract class JakoParent : Status
     [SerializeField] protected Rigidbody rigid;
     [SerializeField] protected NavMeshAgent agent;
 
-    [SerializeField] protected Transform target; //Player
+    protected Transform target; //Player
     [SerializeField] protected Transform[] Waypoints; //Around Player
 
     [SerializeField] protected float repathTime;
@@ -21,6 +21,7 @@ public abstract class JakoParent : Status
         base.Awake();
         rigid = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     protected abstract void Update();

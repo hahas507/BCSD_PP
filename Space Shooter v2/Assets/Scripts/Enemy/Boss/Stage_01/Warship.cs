@@ -10,7 +10,6 @@ public class Warship : Status
     [SerializeField] private Transform[] waypoints;
     private int currentWaypoint;
     private CapsuleCollider capCol;
-    private bool isStopped = false;
     [SerializeField] private GameObject JakoBLUE;
     [SerializeField] private float JakoSpawnRate;
     [SerializeField] private float spawnHowMany;
@@ -33,6 +32,17 @@ public class Warship : Status
     private void Update()
     {
         MoveToNextWaypoint();
+    }
+
+    public override void GetDamage(float _damage)
+    {
+        base.GetDamage(_damage);
+        if (currentHP <= 0)
+        {
+            isDead = true;
+            gameObject.SetActive(false);
+            //Boss defeat event;
+        }
     }
 
     private void MoveToNextWaypoint()

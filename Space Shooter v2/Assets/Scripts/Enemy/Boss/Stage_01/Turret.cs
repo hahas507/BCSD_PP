@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Turret : Status
 {
-    [SerializeField] private GameObject waypointForMechaTrooper;
     [SerializeField] private GameObject turret;
     [SerializeField] private float viewRadius;
 
@@ -55,7 +54,6 @@ public class Turret : Status
             if (currentHP <= 0)
             {
                 isDead = true;
-                waypointForMechaTrooper.SetActive(true);
                 theWarship.GetDamage(turretDestroyDamage);
                 StartCoroutine(TurretDown());
                 theTurret.enabled = false;
@@ -65,11 +63,11 @@ public class Turret : Status
 
     private IEnumerator TurretDown()
     {
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 4; i++)
         {
             GameObject clone = Instantiate(turretDownParticle, transform.position, Quaternion.Euler(turretAngle));
             Destroy(clone, 1.5f);
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds(.3f);
         }
     }
 

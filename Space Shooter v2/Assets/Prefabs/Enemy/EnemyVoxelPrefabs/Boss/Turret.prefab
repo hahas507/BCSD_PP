@@ -47,8 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisName: Turret
-  thisHP: 50
-  waypointForMechaTrooper: {fileID: 0}
+  thisHP: 100
   turret: {fileID: 4951792756511382300}
   viewRadius: 0
   viewAngle: 0

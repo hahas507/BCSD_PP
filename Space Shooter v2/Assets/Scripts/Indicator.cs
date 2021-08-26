@@ -1,20 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Indicator : MonoBehaviour
 {
-    private void Start()
-    {
-    }
+    private GameObject[] Jako; // 씬 상의 모든 Jako
+    private GameObject mainTarget;
+    private float size;
+    [SerializeField] private float resizeTo;
 
     private void Update()
     {
-        float height = Camera.main.orthographicSize;
-        float width = Camera.main.aspect * height;
-        Vector3 screenEdge = new Vector3(width, 0, height);
-        Debug.DrawLine(transform.position, transform.position + screenEdge, Color.red);
+        FindTargets();
+        Resize();
+    }
 
-        Debug.Log(width + ", " + height);
+    private void FindTargets()
+    {
+        mainTarget = GameObject.FindGameObjectWithTag("MainTarget");
+        Jako = GameObject.FindGameObjectsWithTag("Jako");
+    }
+
+    private void Resize()
+    {
+        //크기 조정
+        size = Camera.main.orthographicSize;
+        transform.localScale = Vector3.one * size * resizeTo;
     }
 }

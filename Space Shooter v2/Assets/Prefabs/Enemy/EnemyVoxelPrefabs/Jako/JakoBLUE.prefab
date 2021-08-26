@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 687700875}
   m_Layer: 8
   m_Name: JakoBLUE
-  m_TagString: Enemy
+  m_TagString: Jako
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -233,7 +233,6 @@ MonoBehaviour:
   deathParticlePrefab: {fileID: 8440117091162997854, guid: be69a9148294868429effa1b9682ee9a, type: 3}
   rigid: {fileID: 2754227323324250306}
   agent: {fileID: 1384012123}
-  target: {fileID: 0}
   Waypoints: []
   repathTime: 0.3
   ZacoBullet: {fileID: 217198129246179318, guid: 3511ba807e814b94e8efc7c201244cd9, type: 3}

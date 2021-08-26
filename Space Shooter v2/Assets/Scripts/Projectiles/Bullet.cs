@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
     {
         if (isThisPlayer)
         {
-            if (other.transform.tag == "Enemy" || other.transform.tag == "Rock")
+            if (other.transform.tag == "Jako" || other.transform.tag == "Rock" || other.transform.tag == "MainTarget" || other.transform.tag == "Parts")
             {
                 other.GetComponent<Status>().GetDamage(bulletDamage);
                 var clone = Instantiate(hitParticlePrefab, transform.position, Quaternion.identity);

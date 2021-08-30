@@ -41,6 +41,7 @@ public class Warship : Status
         {
             isDead = true;
             BattleSceneManager.isMainTargetDefeated = true;
+            GameManager.Stage01Cleared = true;
             gameObject.SetActive(false);
             //Boss defeat event;
         }

@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
     public static bool isMenuOpen = false;
     public static string sceneNameToLoad = null;
 
+    public static bool Stage01Cleared = false;
+    public static bool Stage02Cleared = false;
+    public static bool Stage03Cleared = false;
+
     private void Awake()
     {
         _instance = this;

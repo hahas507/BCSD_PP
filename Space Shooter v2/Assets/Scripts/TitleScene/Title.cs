@@ -22,6 +22,14 @@ public class Title : MonoBehaviour
 
     public void ClickStartGame()
     {
+        GameData data = SaveOrLoad.loadData();
+        if (data != null)
+        {
+            GameManager.Stage01Cleared = data.StageCleared[0];
+            GameManager.Stage02Cleared = data.StageCleared[1];
+            GameManager.Stage03Cleared = data.StageCleared[2];
+        }
+
         FadeOut.SetActive(true);
     }
 

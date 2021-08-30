@@ -19,6 +19,7 @@ public class Menu : MonoBehaviour
     {
         CalculateDistance();
         TryOpenMenu();
+        Debug.Log("stage01 cleared? :" + GameManager.Stage01Cleared);
     }
 
     private void CalculateDistance()
@@ -57,7 +58,7 @@ public class Menu : MonoBehaviour
 
     public void ClickToSave()
     {
-        //Save Game;
+        SaveOrLoad.SaveData();
     }
 
     public void LoadBattleTest()

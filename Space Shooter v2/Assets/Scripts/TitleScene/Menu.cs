@@ -7,6 +7,7 @@ public class Menu : MonoBehaviour
     [SerializeField] private float maxDistance;
     [SerializeField] private GameObject FadeOut;
     [SerializeField] private GameObject MenuPanel;
+    [SerializeField] private GameObject[] ClearedText;
 
     private GameObject player;
 
@@ -42,6 +43,15 @@ public class Menu : MonoBehaviour
     public void OpenMenu()
     {
         MenuPanel.SetActive(GameManager.isMenuOpen);
+
+        if (GameManager.Stage01Cleared)
+        {
+            ClearedText[0].SetActive(true);
+        }
+        else if (GameManager.Stage02Cleared)
+        {
+            ClearedText[1].SetActive(true);
+        }
     }
 
     #region BOTTONCLICK

@@ -64,7 +64,6 @@ public class LobbyPlayer : MonoBehaviour
                 if (hitInfo.collider.tag == "Menu")
                 {
                     GameManager.isMenuOpen = true;
-                    Debug.Log("OPEN MENU");
                 }
             }
         }

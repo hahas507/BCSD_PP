@@ -29,7 +29,7 @@ public class JakoRED : JakoParent
 
     protected override void Update()
     {
-        if (!isDead)
+        if (!isDead && !BattleSceneManager.isMainTargetDefeated)
         {
             BashDetect();
 

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class FadeToLoad : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private string sceneNameToLoad;
+    [SerializeField] private string sceneNameToLoad = null;
 
     private void Awake()
     {
@@ -15,11 +15,14 @@ public class FadeToLoad : MonoBehaviour
 
     public void OnFadeComplete()
     {
-        if (GameManager.sceneNameToLoad != null)
+        if (sceneNameToLoad == "")
         {
-            SceneManager.LoadScene(GameManager.sceneNameToLoad);
+            if (SceneManager.GetActiveScene().name == "LobbyScene")
+            {
+                SceneManager.LoadScene(GameManager.sceneNameToLoad);
+            }
         }
-        else if (GameManager.sceneNameToLoad == null)
+        else if (sceneNameToLoad != "")
         {
             SceneManager.LoadScene(sceneNameToLoad);
         }

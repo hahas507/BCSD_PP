@@ -40,6 +40,7 @@ public class Warship : Status
         if (currentHP <= 0)
         {
             isDead = true;
+            BattleSceneManager.isMainTargetDefeated = true;
             gameObject.SetActive(false);
             //Boss defeat event;
         }

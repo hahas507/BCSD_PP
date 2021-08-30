@@ -27,7 +27,7 @@ public class JakoBLUE : JakoParent
 
     protected override void Update()
     {
-        if (!isDead && agent.enabled)
+        if (!isDead && agent.enabled && !BattleSceneManager.isMainTargetDefeated)
         {
             BlueAttack();
 

@@ -21,7 +21,6 @@ public class CamNav : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(currentWaypoint);
         if (navMesh.remainingDistance <= navMesh.stoppingDistance)
         {
             StartCoroutine(SetDestination());

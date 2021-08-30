@@ -179,6 +179,7 @@ public class PlayerController : Status
             StartCoroutine(ImmortalFor(immortalTime));
             if (currentHP <= 0 && !isDead)
             {
+                BattleSceneManager.isPlayerDead = true;
                 thePlayer.enabled = false;
                 isDead = true;
             }

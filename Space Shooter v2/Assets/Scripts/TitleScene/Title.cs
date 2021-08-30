@@ -22,7 +22,6 @@ public class Title : MonoBehaviour
 
     public void ClickStartGame()
     {
-        Debug.Log("START FADE OUT");
         FadeOut.SetActive(true);
     }
 

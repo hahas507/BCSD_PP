@@ -20,7 +20,7 @@ public class JakoYELLOW : JakoParent
 
     protected override void Update()
     {
-        if (!isDead)
+        if (!isDead && !BattleSceneManager.isMainTargetDefeated)
         {
             RedAttack();
 

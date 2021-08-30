@@ -13,6 +13,7 @@ public class LobbyPlayer : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     private bool isWalking = false;
     private Vector3 playerMovement;
+    private Menu theMenu;
 
     private void Awake()
     {
@@ -62,6 +63,7 @@ public class LobbyPlayer : MonoBehaviour
             {
                 if (hitInfo.collider.tag == "Menu")
                 {
+                    GameManager.isMenuOpen = true;
                     Debug.Log("OPEN MENU");
                 }
             }

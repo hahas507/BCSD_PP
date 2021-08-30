@@ -5,33 +5,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject MenuPanel;
+    private static GameManager _instance;
+
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                GameObject gameManager = new GameObject("GameManager");
+                gameManager.AddComponent<GameManager>();
+            }
+
+            return _instance;
+        }
+    }
+
     public static bool isMenuOpen = false;
     public static string sceneNameToLoad = null;
 
-    private void Update()
+    private void Awake()
     {
-        TryOpenMenu();
-    }
-
-    private void TryOpenMenu()
-    {
-        OpenMenu();
-        CloseMenu();
-    }
-
-    public void OpenMenu()
-    {
-        MenuPanel.SetActive(isMenuOpen);
-    }
-
-    public void CloseMenu()
-    {
-        MenuPanel.SetActive(isMenuOpen);
-    }
-
-    public void ClickToCloseMenu()
-    {
-        isMenuOpen = false;
+        _instance = this;
     }
 }

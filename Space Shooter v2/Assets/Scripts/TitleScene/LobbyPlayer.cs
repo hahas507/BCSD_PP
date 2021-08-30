@@ -13,7 +13,6 @@ public class LobbyPlayer : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     private bool isWalking = false;
     private Vector3 playerMovement;
-    private Menu theMenu;
 
     private void Awake()
     {

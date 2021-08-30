@@ -9,6 +9,7 @@ public class PlayerController : Status
     [SerializeField] private LayerMask attackLayer;
     [SerializeField] private float boostSpeed;
     [SerializeField] private float playerSpeed;
+    [SerializeField] private float playerSpeedLimit;
     private float applySpeed;
 
     [Header("Rifle")]
@@ -229,6 +230,10 @@ public class PlayerController : Status
             applySpeed = boostSpeed;
 
             myRig.AddForce(playerMove * applySpeed, ForceMode.VelocityChange);
+            if (myRig.velocity.magnitude > playerSpeedLimit)
+            {
+                myRig.velocity = Vector3.ClampMagnitude(myRig.velocity, playerSpeedLimit);
+            }
             if (Mathf.Abs(currentMoveSpeedX) > boostStartSpeed || Mathf.Abs(currentMoveSpeedY) > boostStartSpeed)
             {
                 currentBoosterLeft -= 1;

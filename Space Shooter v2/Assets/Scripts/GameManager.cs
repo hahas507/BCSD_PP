@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject MenuPanel;
     public static bool isMenuOpen = false;
+    public static string sceneNameToLoad = null;
 
     private void Update()
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Menu : MonoBehaviour
 {
     [SerializeField] private float maxDistance;
+    [SerializeField] private GameObject FadeOut;
     private GameObject player;
 
     private void Awake()
@@ -21,5 +22,17 @@ public class Menu : MonoBehaviour
         {
             GameManager.isMenuOpen = false;
         }
+    }
+
+    public void LoadBattleTest()
+    {
+        FadeOut.SetActive(true);
+        GameManager.sceneNameToLoad = "Battle_Test";
+    }
+
+    public void LoadStage01()
+    {
+        FadeOut.SetActive(true);
+        GameManager.sceneNameToLoad = "Battle_Level_01";
     }
 }

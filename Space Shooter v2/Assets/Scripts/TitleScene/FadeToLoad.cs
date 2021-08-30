@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class FadeToLoad : MonoBehaviour
 {
     [SerializeField] private Animator animator;
+    [SerializeField] private string sceneNameToLoad;
 
     private void Awake()
     {
@@ -14,6 +15,13 @@ public class FadeToLoad : MonoBehaviour
 
     public void OnFadeComplete()
     {
-        SceneManager.LoadScene(1);
+        if (GameManager.sceneNameToLoad != null)
+        {
+            SceneManager.LoadScene(GameManager.sceneNameToLoad);
+        }
+        else if (GameManager.sceneNameToLoad == null)
+        {
+            SceneManager.LoadScene(sceneNameToLoad);
+        }
     }
 }

@@ -13,7 +13,6 @@ public class Title : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {

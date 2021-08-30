@@ -236,8 +236,8 @@ MonoBehaviour:
   Waypoints: []
   repathTime: 0.3
   ZacoBullet: {fileID: 217198129246179318, guid: 3511ba807e814b94e8efc7c201244cd9, type: 3}
-  attackCycle: 5.4
-  magazine: 8
+  attackCycle: 8
+  magazine: 3
   fireRate: 0.25
 --- !u!1001 &6857189778366916300
 PrefabInstance:

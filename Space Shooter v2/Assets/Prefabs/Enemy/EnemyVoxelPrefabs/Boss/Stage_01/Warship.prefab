@@ -258,7 +258,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  JakoBLUE: {fileID: 6857189777393956606, guid: c43a39e5ce6eeb14ab6b8b49b13a7f1d, type: 3}
+  Jako:
+  - {fileID: 6857189777393956606, guid: c43a39e5ce6eeb14ab6b8b49b13a7f1d, type: 3}
+  - {fileID: 4035667851419562586, guid: ac40addc7b8379c4781a09fa26df85a0, type: 3}
+  - {fileID: 3500938767960215942, guid: 0a04ca483cf2e054ea241a82d50c711b, type: 3}
   JakoSpawnRate: 1.5
   spawnHowMany: 2
 --- !u!1 &4150890651584634458
@@ -724,7 +727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisName: Warship Engine
-  thisHP: 600
+  thisHP: 300
   engindDownDamage: 700
 --- !u!1 &7481972086848678905
 GameObject:
@@ -1057,7 +1060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: magazine
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisName
@@ -1069,7 +1072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: viewAngle
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: viewRadius
@@ -1164,7 +1167,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisHP
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: turret
@@ -1176,7 +1179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: magazine
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisName
@@ -1283,7 +1286,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisHP
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: turret
@@ -1295,7 +1298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: magazine
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisName
@@ -1402,7 +1405,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisHP
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: turret
@@ -1414,7 +1417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: magazine
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisName
@@ -1529,7 +1532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisHP
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: turret
@@ -1541,7 +1544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: magazine
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisName
@@ -1660,7 +1663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: magazine
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisName
@@ -1672,7 +1675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: viewAngle
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: viewRadius

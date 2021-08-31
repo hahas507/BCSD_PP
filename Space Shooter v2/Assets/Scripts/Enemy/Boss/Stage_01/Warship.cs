@@ -10,9 +10,11 @@ public class Warship : Status
     [SerializeField] private Transform[] waypoints;
     private int currentWaypoint;
     private CapsuleCollider capCol;
-    [SerializeField] private GameObject JakoBLUE;
+    [SerializeField] private GameObject[] Jako;
     [SerializeField] private float JakoSpawnRate;
     [SerializeField] private float spawnHowMany;
+
+    private int JakoLength;
 
     public float CURRENTSPEED
     {
@@ -32,6 +34,20 @@ public class Warship : Status
     private void Update()
     {
         MoveToNextWaypoint();
+        PhaseCheck();
+    }
+
+    private void PhaseCheck()
+    {
+        JakoLength = 0;
+        if (currentHP <= thisHP * (2f / 3f))
+        {
+            JakoLength = 1;
+            if (currentHP <= thisHP * (1f / 3f))
+            {
+                JakoLength = 2;
+            }
+        }
     }
 
     public override void GetDamage(float _damage)
@@ -42,7 +58,7 @@ public class Warship : Status
             isDead = true;
             BattleSceneManager.isMainTargetDefeated = true;
             GameManager.Stage01Cleared = true;
-            gameObject.SetActive(false);
+
             //Boss defeat event;
         }
     }
@@ -66,18 +82,18 @@ public class Warship : Status
         navMesh.isStopped = true;
         yield return new WaitForSeconds(3);
         navMesh.isStopped = false;
-        StartCoroutine(SpawnJakoBLUE(JakoSpawnRate));
+        StartCoroutine(SpawnJako(JakoSpawnRate));
     }
 
-    private IEnumerator SpawnJakoBLUE(float spawnRate)
+    private IEnumerator SpawnJako(float spawnRate)
     {
         YieldInstruction wait = new WaitForSeconds(spawnRate);
         yield return wait;
         for (int i = 0; i < spawnHowMany; i++)
         {
-            Instantiate(JakoBLUE, transform.position + new Vector3(20, 6, 0), Quaternion.identity);
+            Instantiate(Jako[UnityEngine.Random.Range(0, JakoLength + 1)], transform.position + new Vector3(20, 6, 0), Quaternion.identity);
             yield return wait;
-            Instantiate(JakoBLUE, transform.position + new Vector3(-20, 6, 0), Quaternion.identity);
+            Instantiate(Jako[UnityEngine.Random.Range(0, JakoLength + 1)], transform.position + new Vector3(-20, 6, 0), Quaternion.identity);
             yield return wait;
         }
     }

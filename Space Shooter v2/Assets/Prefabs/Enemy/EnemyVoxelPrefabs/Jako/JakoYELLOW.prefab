@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisName: Jako YELLOW
-  thisHP: 5
+  thisHP: 7
   deathParticlePrefab: {fileID: 8440117091162997854, guid: be69a9148294868429effa1b9682ee9a, type: 3}
   rigid: {fileID: 1250499093369835615}
   agent: {fileID: -6443411402911046724}

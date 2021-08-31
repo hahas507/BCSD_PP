@@ -22,6 +22,15 @@ public abstract class JakoParent : Status
         rigid = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        if (Waypoints.Length != 0)
+        {
+            Waypoints[0] = GameObject.Find("/Player/Mecha01/Waypoints/Waypoint").transform;
+            Waypoints[1] = GameObject.Find("/Player/Mecha01/Waypoints/Waypoint (1)").transform;
+            Waypoints[2] = GameObject.Find("/Player/Mecha01/Waypoints/Waypoint (2)").transform;
+            Waypoints[3] = GameObject.Find("/Player/Mecha01/Waypoints/Waypoint (3)").transform;
+            Waypoints[4] = GameObject.Find("/Player/Mecha01/Waypoints/Waypoint (4)").transform;
+            Waypoints[5] = GameObject.Find("/Player/Mecha01/Waypoints/Waypoint (5)").transform;
+        }
     }
 
     protected abstract void Update();

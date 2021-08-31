@@ -15,6 +15,11 @@ public class BattleSceneManager : MonoBehaviour
     public static bool isMainTargetDefeated = false;
     public static bool isSceneChanging = false;
 
+    private void Start()
+    {
+        isMenuOpen = false;
+    }
+
     private void Update()
     {
         TryOpenMenu();
@@ -54,5 +59,9 @@ public class BattleSceneManager : MonoBehaviour
             MainPanel.SetActive(isMenuOpen);
             ResultPanel.SetActive(isMenuOpen);
         }
+    }
+
+    public void Test()
+    {
     }
 }

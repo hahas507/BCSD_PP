@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Indicator : MonoBehaviour
+public class IndicatorHolder : MonoBehaviour
 {
     private GameObject[] Jako; // ¾À »óÀÇ ¸ðµç Jako
+    public List<Transform> JakoPositions = new List<Transform>();
     private GameObject mainTarget;
     private float size;
     [SerializeField] private float resizeTo;

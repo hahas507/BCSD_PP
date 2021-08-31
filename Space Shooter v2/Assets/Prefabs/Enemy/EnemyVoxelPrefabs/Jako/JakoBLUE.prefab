@@ -210,7 +210,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6857189777393956606}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 3.6
   m_Height: 20
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisName: Jako BLUE
-  thisHP: 5
+  thisHP: 4
   deathParticlePrefab: {fileID: 8440117091162997854, guid: be69a9148294868429effa1b9682ee9a, type: 3}
   rigid: {fileID: 2754227323324250306}
   agent: {fileID: 1384012123}

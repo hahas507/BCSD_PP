@@ -13,6 +13,7 @@ public class Warship : Status
     [SerializeField] private GameObject[] Jako;
     [SerializeField] private float JakoSpawnRate;
     [SerializeField] private float spawnHowMany;
+    private Warship theWarship;
 
     private int JakoLength;
 
@@ -26,9 +27,11 @@ public class Warship : Status
     {
         base.Awake();
         capCol = GetComponent<CapsuleCollider>();
+        theWarship = GetComponent<Warship>();
         capCol.enabled = false;
         navMesh = GetComponent<NavMeshAgent>();
         navMesh.SetDestination(waypoints[0].position);
+        BattleSceneManager.isMainTargetDefeated = false;
     }
 
     private void Update()
@@ -58,7 +61,8 @@ public class Warship : Status
             isDead = true;
             BattleSceneManager.isMainTargetDefeated = true;
             GameManager.Stage01Cleared = true;
-
+            navMesh.enabled = false;
+            theWarship.enabled = false;
             //Boss defeat event;
         }
     }

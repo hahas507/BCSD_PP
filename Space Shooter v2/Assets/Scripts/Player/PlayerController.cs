@@ -28,13 +28,22 @@ public class PlayerController : Status
     [SerializeField] private float shotgunFireRate;
 
     [Header("Lazer")]
-    private RaycastHit hitInfo;
-
     [SerializeField] private float lazerMaxDistance;
+
     [SerializeField] private float lazerDamage;
     [SerializeField] private float maxLazerGauge; private float currentLazerGauge;
+    [SerializeField] private GameObject rechargeAlertParticle;
+    private RaycastHit hitInfo;
 
     private Vector3 myPosition; private Vector3 tarPosition;
+
+    [Header("Melee Attack")]
+    [SerializeField] private GameObject Sabor;
+
+    [SerializeField] private GameObject MeleeHitBox;
+    [SerializeField] private float MeleeDashSpeed;
+    [SerializeField] private float MeleeAttackSpeed;
+    [SerializeField] private float MeleeGauge;
 
     [Header("Particle Prefabs")]
     [SerializeField] private GameObject bulletPrefab;
@@ -52,6 +61,7 @@ public class PlayerController : Status
     private bool isBoosterRecovering = false;
     private bool canLazerRecover = false;
     private bool isLazerOnFire = false;
+    private bool isMeleeAttackOn = false;
 
     [SerializeField] private float immortalTime; private float immortalTimer; //무적 타이머
     private bool isAttacked = false;
@@ -62,9 +72,6 @@ public class PlayerController : Status
     private Animator myAnim;
     [SerializeField] private CapsuleCollider capCol;
     private PlayerController thePlayer;
-
-    //private Sabor theSabor;
-    //private bool isMeleeAttack;
 
     #region Status
 
@@ -101,16 +108,17 @@ public class PlayerController : Status
         myRig = GetComponent<Rigidbody>();
         myAnim = GetComponent<Animator>();
         capCol = GetComponent<CapsuleCollider>();
-        //theSabor = FindObjectOfType<Sabor>();
+        Sabor.SetActive(false);
     }
 
     private void FixedUpdate()
     {
         LookAt();
-        TryMove(); // Character movement & boost
+        TryMove();
         DetectWeaponSelect();
         UIfollow();
         LazerRecharge();
+        SaborOnOff();
     }
 
     public enum WEAPONS
@@ -118,6 +126,7 @@ public class PlayerController : Status
         RIFLE,
         SHOTGUN,
         LAZER,
+        MELEE,
         EMPTY,
     }
 
@@ -143,24 +152,34 @@ public class PlayerController : Status
         //{
         //    //Missile();
         //}
-        //else if (Input.GetKey(KeyCode.LeftShift))
-        //{
-        //    //MeleeAttack();
-        //}
+        else if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            currentWeapon = 3;
+        }
         weapon = (WEAPONS)currentWeapon;
 
         switch (weapon)
         {
             case WEAPONS.RIFLE:
+                isLazerOnFire = false;
+                isMeleeAttackOn = false;
                 ShootRifle();
                 break;
 
             case WEAPONS.SHOTGUN:
+                isLazerOnFire = false;
+                isMeleeAttackOn = false;
                 ShootShotgun();
                 break;
 
             case WEAPONS.LAZER:
+                isMeleeAttackOn = false;
                 ShootLazer();
+                break;
+
+            case WEAPONS.MELEE:
+                lazerShootEffect.Stop();
+                Melee();
                 break;
 
             case WEAPONS.EMPTY:
@@ -278,7 +297,6 @@ public class PlayerController : Status
         {
             if (Input.GetButton("Fire1"))
             {
-                isLazerOnFire = false;
                 myAnim.SetTrigger("Attack_Gun");
                 randomAngle = new Vector3(0f, UnityEngine.Random.Range(GetDegree(myPosition, tarPosition) - fireAngle, GetDegree(myPosition, tarPosition) + fireAngle), 0f);
                 GameObject clone = Instantiate(bulletPrefab, shootingHand.position + (transform.forward * 2.2f), Quaternion.Euler(-randomAngle));
@@ -295,7 +313,6 @@ public class PlayerController : Status
         {
             if (Input.GetButton("Fire1"))
             {
-                isLazerOnFire = false;
                 myAnim.SetTrigger("Attack_Gun");
 
                 for (int i = 0; i < shotgunBulletCount; i++)
@@ -319,7 +336,7 @@ public class PlayerController : Status
         {
             isLazerOnFire = true;
             canLazerRecover = false;
-            currentLazerGauge -= .3f;
+            currentLazerGauge -= 1f;
             lazerShootEffect.Play();
             myAnim.SetTrigger("Attack_Gun");
             if (Physics.Raycast(shootingHand.transform.position + shootingHand.transform.up, shootingHand.transform.forward, out hitInfo, lazerMaxDistance, attackLayer))
@@ -334,11 +351,15 @@ public class PlayerController : Status
 
     private void LazerRecharge()
     {
-        if (currentLazerGauge < maxLazerGauge && !isLazerOnFire && !canLazerRecover)
+        if (currentLazerGauge < maxLazerGauge && !isLazerOnFire && !canLazerRecover && !isMeleeAttackOn)
         {
             lazerShootEffect.Stop();
             canLazerRecover = true;
             StartCoroutine(LazerGaugeRecoverCoroutine());
+        }
+        if (currentLazerGauge <= 0)
+        {
+            rechargeAlertParticle.SetActive(true);
         }
     }
 
@@ -346,15 +367,16 @@ public class PlayerController : Status
     {
         yield return new WaitForSeconds(2);
 
-        while (canLazerRecover && !isLazerOnFire)
+        while (canLazerRecover && !isLazerOnFire && !isMeleeAttackOn)
         {
-            currentLazerGauge += 1f;
+            rechargeAlertParticle.SetActive(false);
+            currentLazerGauge += 2f;
             if (currentLazerGauge >= maxLazerGauge)
             {
                 canLazerRecover = false;
                 currentLazerGauge = maxLazerGauge;
             }
-            yield return new WaitForSeconds(.05f);
+            yield return new WaitForSeconds(.01f);
         }
     }
 
@@ -386,14 +408,47 @@ public class PlayerController : Status
         UI.transform.position = UIposition;
     }
 
-    //private void MeleeAttack()
-    //{
-    //    isMeleeAttack = false;
-    //    if (Input.GetButtonDown("Fire2"))
-    //    {
-    //        isMeleeAttack = true;
+    #region MELEE
 
-    //        myAnim.SetTrigger("Attack_Melee");
-    //    }
-    //}
+    private void Melee()
+    {
+        isMeleeAttackOn = true;
+        currentLazerGauge -= .07f;
+        timer += Time.deltaTime;
+        if (timer >= MeleeAttackSpeed)
+        {
+            if (Input.GetButtonDown("Fire1") && currentLazerGauge > 0)
+            {
+                timer = 0f;
+                currentLazerGauge -= MeleeGauge;
+                StopCoroutine(MeleeAttack());
+                StartCoroutine(MeleeAttack());
+            }
+        }
+    }
+
+    private IEnumerator MeleeAttack()
+    {
+        myAnim.SetTrigger("Attack_Melee");
+        myRig.AddForce(transform.right * MeleeDashSpeed, ForceMode.VelocityChange);
+        GameObject clone = Instantiate(boostEffectPrefab, transform.position, Quaternion.LookRotation(-transform.right));
+        Destroy(clone, 3f);
+        MeleeHitBox.SetActive(true);
+        yield return new WaitForSeconds(.15f);
+        MeleeHitBox.SetActive(false);
+    }
+
+    private void SaborOnOff()
+    {
+        if (isMeleeAttackOn)
+        {
+            Sabor.SetActive(true);
+        }
+        else
+        {
+            Sabor.SetActive(false);
+        }
+    }
+
+    #endregion MELEE
 }

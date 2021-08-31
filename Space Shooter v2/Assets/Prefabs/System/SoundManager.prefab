@@ -57,14 +57,8 @@ MonoBehaviour:
   audioSourceBGM: {fileID: 9131905776331712358}
   playingSoundName: []
   effectSounds:
-  - name: Battle_Player_Shoot
-    clip: {fileID: 8300000, guid: 9f565e76fb641b24983afc54aa608594, type: 3}
   - name: Lobby_Menu_Open
     clip: {fileID: 8300000, guid: 1dc3a876ab462e74fa7ce43a5df45e52, type: 3}
-  - name: Lobby_Menu_Close
-    clip: {fileID: 8300000, guid: 43034fd864f931749889c7146603deaa, type: 3}
-  - name: Lobby_Player_Walk
-    clip: {fileID: 8300000, guid: baf7bf70bcf193b4fb00c67199d685f9, type: 3}
   BGMSounds: []
 --- !u!82 &9131905776331712358
 AudioSource:

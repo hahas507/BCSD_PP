@@ -72,7 +72,7 @@ public class PlayerController : Status
     private Animator myAnim;
     [SerializeField] private CapsuleCollider capCol;
     private PlayerController thePlayer;
-    [SerializeField] private string shootingSound;
+    private AudioSource shootingSound;
 
     #region Status
 
@@ -109,6 +109,7 @@ public class PlayerController : Status
         myRig = GetComponent<Rigidbody>();
         myAnim = GetComponent<Animator>();
         capCol = GetComponent<CapsuleCollider>();
+        shootingSound = GetComponent<AudioSource>();
         Sabor.SetActive(false);
     }
 
@@ -332,6 +333,7 @@ public class PlayerController : Status
 
     private void ShootLazer()
     {
+        myAnim.SetBool("Attack_Lazer", false);
         isLazerOnFire = false;
         if (Input.GetButton("Fire1") && currentLazerGauge > 0)
         {
@@ -339,7 +341,7 @@ public class PlayerController : Status
             canLazerRecover = false;
             currentLazerGauge -= 1f;
             lazerShootEffect.Play();
-            myAnim.SetTrigger("Attack_Gun");
+            myAnim.SetBool("Attack_Lazer", true);
             if (Physics.Raycast(shootingHand.transform.position + shootingHand.transform.up, shootingHand.transform.forward, out hitInfo, lazerMaxDistance, attackLayer))
             {
                 Vector3 lazerAngle = new Vector3(0f, GetDegree(myPosition, hitInfo.transform.position), 0f);
@@ -407,6 +409,11 @@ public class PlayerController : Status
     {
         Vector3 UIposition = Camera.main.WorldToScreenPoint(transform.position);
         UI.transform.position = UIposition;
+    }
+
+    private void PlayShootSE()
+    {
+        shootingSound.Play();
     }
 
     #region MELEE

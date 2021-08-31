@@ -13,13 +13,15 @@ public class LobbyPlayer : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     private bool isWalking = false;
     private Vector3 playerMovement;
+    private AudioSource audioSource;
 
-    [SerializeField] private string walkSound;
+    [SerializeField] private string openSound;
 
     private void Awake()
     {
         rig = GetComponent<Rigidbody>();
         ani = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -40,11 +42,15 @@ public class LobbyPlayer : MonoBehaviour
         {
             isWalking = true;
             transform.forward = playerMovement;
-
             ani.SetBool("IsWalking", isWalking);
+
             if (rig.velocity.magnitude > maxVelocity)
             {
                 rig.velocity = Vector3.ClampMagnitude(rig.velocity, maxVelocity);
+            }
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
             }
         }
         else if (playerMovement == Vector3.zero)
@@ -62,8 +68,9 @@ public class LobbyPlayer : MonoBehaviour
             RaycastHit hitInfo;
             if (Physics.Raycast(rig.position + Vector3.up, transform.forward, out hitInfo, 10, layerMask))
             {
-                if (hitInfo.collider.tag == "Menu")
+                if (hitInfo.collider.tag == "Menu" && GameManager.isMenuOpen == false)
                 {
+                    SoundManager.instance.PlaySE(openSound);
                     GameManager.isMenuOpen = true;
                 }
             }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,8 @@ public class Menu : MonoBehaviour
     [SerializeField] private GameObject FadeOut;
     [SerializeField] private GameObject MenuPanel;
     [SerializeField] private GameObject[] ClearedText;
-    [SerializeField] private string openSound;
-    [SerializeField] private string closeSound;
-
+    [SerializeField] private AudioSource closeAudio;
+    [SerializeField] private AudioClip closeSound;
     private GameObject player;
 
     private void Awake()
@@ -29,22 +29,21 @@ public class Menu : MonoBehaviour
         Vector3 playerPos = player.transform.position;
         float distance = Vector3.Distance(transform.position, playerPos);
 
-        if (distance > maxDistance)
+        if (distance > maxDistance && GameManager.isMenuOpen)
         {
             GameManager.isMenuOpen = false;
+            closeAudio.PlayOneShot(closeSound);
         }
     }
 
     private void TryOpenMenu()
     {
         OpenMenu();
-        CloseMenu();
     }
 
     public void OpenMenu()
     {
         MenuPanel.SetActive(GameManager.isMenuOpen);
-        SoundManager.instance.PlaySE(openSound);
         if (GameManager.Stage01Cleared)
         {
             ClearedText[0].SetActive(true);
@@ -57,15 +56,10 @@ public class Menu : MonoBehaviour
 
     #region BOTTONCLICK
 
-    public void CloseMenu()
-    {
-        MenuPanel.SetActive(GameManager.isMenuOpen);
-        SoundManager.instance.PlaySE(closeSound);
-    }
-
     public void ClickToCloseMenu()
     {
         GameManager.isMenuOpen = false;
+        closeAudio.PlayOneShot(closeSound);
     }
 
     public void ClickToSave()

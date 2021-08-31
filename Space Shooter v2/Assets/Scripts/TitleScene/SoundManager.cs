@@ -36,7 +36,11 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        playingSoundName = new string[audioSourceEffects.Length];
+        playingSoundName = new string[effectSounds.Length];
+    }
+
+    private void Update()
+    {
         audioSourceEffects = GetComponents<AudioSource>();
     }
 

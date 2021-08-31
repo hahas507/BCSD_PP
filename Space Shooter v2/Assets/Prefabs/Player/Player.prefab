@@ -10628,6 +10628,7 @@ MonoBehaviour:
   immortalTime: 0.2
   UI: {fileID: 977120691}
   capCol: {fileID: 571593284}
+  shootingSound: Battle_Player_Shoot
   weapon: 0
 --- !u!1 &2413371188885510872
 GameObject:

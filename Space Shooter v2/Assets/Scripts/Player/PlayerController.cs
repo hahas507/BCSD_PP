@@ -72,6 +72,7 @@ public class PlayerController : Status
     private Animator myAnim;
     [SerializeField] private CapsuleCollider capCol;
     private PlayerController thePlayer;
+    [SerializeField] private string shootingSound;
 
     #region Status
 

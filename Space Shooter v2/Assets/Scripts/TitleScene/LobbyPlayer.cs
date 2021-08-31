@@ -14,6 +14,8 @@ public class LobbyPlayer : MonoBehaviour
     private bool isWalking = false;
     private Vector3 playerMovement;
 
+    [SerializeField] private string walkSound;
+
     private void Awake()
     {
         rig = GetComponent<Rigidbody>();

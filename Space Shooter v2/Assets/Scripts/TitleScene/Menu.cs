@@ -8,6 +8,8 @@ public class Menu : MonoBehaviour
     [SerializeField] private GameObject FadeOut;
     [SerializeField] private GameObject MenuPanel;
     [SerializeField] private GameObject[] ClearedText;
+    [SerializeField] private string openSound;
+    [SerializeField] private string closeSound;
 
     private GameObject player;
 
@@ -20,7 +22,6 @@ public class Menu : MonoBehaviour
     {
         CalculateDistance();
         TryOpenMenu();
-        Debug.Log("stage01 cleared? :" + GameManager.Stage01Cleared);
     }
 
     private void CalculateDistance()
@@ -43,7 +44,7 @@ public class Menu : MonoBehaviour
     public void OpenMenu()
     {
         MenuPanel.SetActive(GameManager.isMenuOpen);
-
+        SoundManager.instance.PlaySE(openSound);
         if (GameManager.Stage01Cleared)
         {
             ClearedText[0].SetActive(true);
@@ -59,6 +60,7 @@ public class Menu : MonoBehaviour
     public void CloseMenu()
     {
         MenuPanel.SetActive(GameManager.isMenuOpen);
+        SoundManager.instance.PlaySE(closeSound);
     }
 
     public void ClickToCloseMenu()

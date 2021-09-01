@@ -8,18 +8,18 @@ public class IndicatorHolder : MonoBehaviour
     [Header("Indicator")]
     [SerializeField] private GameObject indicator;
 
-    [SerializeField] private GameObject playerPosition;
+    private GameObject playerPosition;
     private Renderer rdr;
     [SerializeField] private LayerMask indicatorLayer;
 
     private void Awake()
     {
         rdr = GetComponent<Renderer>();
+        playerPosition = GameObject.Find("Player");
     }
 
     private void Update()
     {
-        Debug.Log(rdr.isVisible);
         if (rdr.isVisible == false)
         {
             if (indicator.activeSelf == false)

@@ -377,9 +377,7 @@ public class PlayerController : Status
 
     private IEnumerator LazerGaugeRecoverCoroutine()
     {
-        Debug.Log("Check");
         yield return new WaitForSeconds(2);
-        Debug.Log("yield Check");
         while (canLazerRecover && !isLazerOnFire && !isMeleeAttackOn)
         {
             rechargeAlertParticle.SetActive(false);

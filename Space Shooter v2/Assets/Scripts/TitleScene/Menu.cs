@@ -84,7 +84,7 @@ public class Menu : MonoBehaviour
     public void LoadBattleTest()
     {
         FadeOut.SetActive(true);
-        GameManager.sceneNameToLoad = "Battle_Test";
+        GameManager.sceneNameToLoad = "Battle_Tutorial";
     }
 
     public void LoadStage01()

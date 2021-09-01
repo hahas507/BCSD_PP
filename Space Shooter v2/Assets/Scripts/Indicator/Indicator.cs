@@ -5,13 +5,27 @@ using UnityEngine;
 
 public class Indicator : MonoBehaviour
 {
-    private Vector3 myPosition;
+    private float size;
+    [SerializeField] private float resizeTo;
     private Transform targetPosition;
-    private Vector3 tarPosition;
+    private Vector3 myPosition; private Vector3 tarPosition;
     private Vector3 lookDirection;
+
+    private void Awake()
+    {
+        targetPosition = GameObject.Find("Player").transform;
+    }
 
     private void Update()
     {
+        LookAt();
+        Resize();
+    }
+
+    private void Resize()
+    {
+        size = Camera.main.orthographicSize;
+        transform.localScale = Vector3.one * size * resizeTo;
     }
 
     private float GetDegree(Vector3 _from, Vector3 _to)

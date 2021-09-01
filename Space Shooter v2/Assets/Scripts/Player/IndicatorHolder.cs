@@ -5,28 +5,45 @@ using UnityEngine;
 
 public class IndicatorHolder : MonoBehaviour
 {
-    private GameObject[] Jako; // 씬 상의 모든 Jako
-    public List<Transform> JakoPositions = new List<Transform>();
-    private GameObject mainTarget;
-    private float size;
-    [SerializeField] private float resizeTo;
+    [Header("Indicator")]
+    [SerializeField] private GameObject indicator;
+
+    [SerializeField] private GameObject playerPosition;
+    private Renderer rdr;
+    [SerializeField] private LayerMask indicatorLayer;
+
+    private void Awake()
+    {
+        rdr = GetComponent<Renderer>();
+    }
 
     private void Update()
     {
-        FindTargets();
-        Resize();
-    }
+        Debug.Log(rdr.isVisible);
+        if (rdr.isVisible == false)
+        {
+            if (indicator.activeSelf == false)
+            {
+                indicator.SetActive(true);
+            }
 
-    private void FindTargets()
-    {
-        mainTarget = GameObject.FindGameObjectWithTag("MainTarget");
-        Jako = GameObject.FindGameObjectsWithTag("Jako");
-    }
+            Vector3 direction = (playerPosition.transform.position - transform.position);
+            Ray ray = new Ray(transform.position, direction);
+            Debug.DrawRay(transform.position, direction);
+            RaycastHit hitInfo;
 
-    private void Resize()
-    {
-        //크기 조정
-        size = Camera.main.orthographicSize;
-        transform.localScale = Vector3.one * size * resizeTo;
+            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, indicatorLayer))
+            {
+                Debug.Log(hitInfo.point);
+                indicator.transform.position = hitInfo.point;
+            }
+        }
+        else
+        {
+            if (indicator.activeSelf == true)
+            {
+                indicator.SetActive(false);
+            }
+        }
     }
 }

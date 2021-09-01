@@ -15,7 +15,7 @@ public class IndicatorBox : MonoBehaviour
         height = Camera.main.orthographicSize;
         width = height * Camera.main.aspect;
 
-        size = new Vector3(2 * width, 2 * height, 100f);
+        size = new Vector3(1.8f * width, 1.8f * height, 100f);
 
         camPositionY = Camera.main.transform.position.y;
         setPosition = new Vector3(transform.position.x, -camPositionY / 30, transform.position.z);

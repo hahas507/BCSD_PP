@@ -688,6 +688,10 @@ PrefabInstance:
       propertyPath: m_Color.g
       value: 0.9027058
       objectReference: {fileID: 0}
+    - target: {fileID: 875326615957844400, guid: faf0fd300add37d46b3412ee03182980, type: 3}
+      propertyPath: resizeTo
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 979330525797230255, guid: faf0fd300add37d46b3412ee03182980, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -16,12 +16,26 @@ public class Menu : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        Cursor.visible = false;
     }
 
     private void Update()
     {
         CalculateDistance();
         TryOpenMenu();
+        MouseVisible();
+    }
+
+    private void MouseVisible()
+    {
+        if (GameManager.isMenuOpen == true)
+        {
+            Cursor.visible = true;
+        }
+        else if (GameManager.isMenuOpen == false)
+        {
+            Cursor.visible = false;
+        }
     }
 
     private void CalculateDistance()

@@ -24,6 +24,19 @@ public class BattleSceneManager : MonoBehaviour
     {
         TryOpenMenu();
         TimeScale();
+        MouseVisible();
+    }
+
+    private void MouseVisible()
+    {
+        if (isMenuOpen == true)
+        {
+            Cursor.visible = true;
+        }
+        else if (isMenuOpen == false)
+        {
+            Cursor.visible = false;
+        }
     }
 
     private void TimeScale()

@@ -6,6 +6,7 @@ public class Sabor : MonoBehaviour
 {
     [SerializeField] private float damage;
     private Status theStatus;
+    private bool hasDamaged;
 
     private void Awake()
     {
@@ -14,8 +15,9 @@ public class Sabor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Jako" || other.transform.tag == "Rock" || other.transform.tag == "MainTarget" || other.transform.tag == "Parts")
+        if (other.transform.tag == "Jako" || other.transform.tag == "Rock" || other.transform.tag == "MainTarget" || other.transform.tag == "Parts" && !hasDamaged)
         {
+            hasDamaged = true;
             other.GetComponent<Status>().GetDamage(damage);
         }
     }

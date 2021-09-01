@@ -9,6 +9,7 @@ public class TutorialTeacher : MonoBehaviour
     [SerializeField] private GameObject AttackTutorialIndicator;
 
     [SerializeField] private GameObject followArrow;
+    [SerializeField] private GameObject pressMenu;
 
     private void Awake()
     {
@@ -22,17 +23,33 @@ public class TutorialTeacher : MonoBehaviour
 
     private void FollowArrow()
     {
-        if (followArrow.activeSelf)
+        if (AttackTutorialIndicator != null)
         {
-            followArrow.transform.position = AttackTutorialIndicator.transform.position - (Vector3.forward * 17);
-            if (!AttackTutorialIndicator.activeSelf)
+            if (followArrow.activeSelf)
             {
-                followArrow.SetActive(false);
+                followArrow.transform.position = AttackTutorialIndicator.transform.position - (Vector3.forward * 17);
+                if (!AttackTutorialIndicator.activeSelf)
+                {
+                    followArrow.SetActive(false);
+                }
+            }
+            else
+            {
+                return;
             }
         }
         else
         {
             return;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "Tutorial_Attack")
+        {
+            Destroy(AttackTutorialIndicator);
+            pressMenu.SetActive(true);
         }
     }
 }

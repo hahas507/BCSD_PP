@@ -20,29 +20,36 @@ public class IndicatorHolder : MonoBehaviour
 
     private void Update()
     {
-        if (rdr.isVisible == false)
+        if (indicator != null)
         {
-            if (indicator.activeSelf == false)
+            if (rdr.isVisible == false)
             {
-                indicator.SetActive(true);
+                if (indicator.activeSelf == false)
+                {
+                    indicator.SetActive(true);
+                }
+
+                Vector3 direction = (playerPosition.transform.position - transform.position);
+                Ray ray = new Ray(transform.position, direction);
+                Debug.DrawRay(transform.position, direction);
+                RaycastHit hitInfo;
+
+                if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, indicatorLayer))
+                {
+                    indicator.transform.position = hitInfo.point;
+                }
             }
-
-            Vector3 direction = (playerPosition.transform.position - transform.position);
-            Ray ray = new Ray(transform.position, direction);
-            Debug.DrawRay(transform.position, direction);
-            RaycastHit hitInfo;
-
-            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, indicatorLayer))
+            else
             {
-                indicator.transform.position = hitInfo.point;
+                if (indicator.activeSelf == true)
+                {
+                    indicator.SetActive(false);
+                }
             }
         }
         else
         {
-            if (indicator.activeSelf == true)
-            {
-                indicator.SetActive(false);
-            }
+            return;
         }
     }
 }

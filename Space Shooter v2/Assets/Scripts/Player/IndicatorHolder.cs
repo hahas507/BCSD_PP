@@ -34,7 +34,6 @@ public class IndicatorHolder : MonoBehaviour
 
             if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, indicatorLayer))
             {
-                Debug.Log(hitInfo.point);
                 indicator.transform.position = hitInfo.point;
             }
         }

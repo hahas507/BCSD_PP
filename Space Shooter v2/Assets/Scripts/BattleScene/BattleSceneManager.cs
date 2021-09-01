@@ -60,8 +60,4 @@ public class BattleSceneManager : MonoBehaviour
             ResultPanel.SetActive(isMenuOpen);
         }
     }
-
-    public void Test()
-    {
-    }
 }

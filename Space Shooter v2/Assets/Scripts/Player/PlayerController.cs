@@ -101,6 +101,7 @@ public class PlayerController : Status
         base.Awake();
         currentBoosterLeft = maxBoosterCount;
         currentLazerGauge = maxLazerGauge;
+        BattleSceneManager.isPlayerDead = false;
     }
 
     private void Start()
@@ -291,7 +292,8 @@ public class PlayerController : Status
 
     #endregion Move+Booster
 
-    //RIFLE 발사
+    #region Rifle
+
     private void ShootRifle()
     {
         timer += Time.deltaTime;
@@ -307,6 +309,10 @@ public class PlayerController : Status
             }
         }
     }
+
+    #endregion Rifle
+
+    #region Shotgun
 
     private void ShootShotgun()
     {
@@ -328,6 +334,8 @@ public class PlayerController : Status
             }
         }
     }
+
+    #endregion Shotgun
 
     #region Lazer
 
@@ -354,22 +362,24 @@ public class PlayerController : Status
 
     private void LazerRecharge()
     {
-        if (currentLazerGauge < maxLazerGauge && !isLazerOnFire && !canLazerRecover && !isMeleeAttackOn)
+        if (currentLazerGauge < maxLazerGauge && !isLazerOnFire && !canLazerRecover && !Sabor.activeSelf)
         {
             lazerShootEffect.Stop();
             canLazerRecover = true;
             StartCoroutine(LazerGaugeRecoverCoroutine());
         }
-        if (currentLazerGauge <= 0)
+        if (currentLazerGauge <= 0 && !rechargeAlertParticle.activeSelf)
         {
             rechargeAlertParticle.SetActive(true);
+            currentLazerGauge = 0;
         }
     }
 
     private IEnumerator LazerGaugeRecoverCoroutine()
     {
+        Debug.Log("Check");
         yield return new WaitForSeconds(2);
-
+        Debug.Log("yield Check");
         while (canLazerRecover && !isLazerOnFire && !isMeleeAttackOn)
         {
             rechargeAlertParticle.SetActive(false);
@@ -384,6 +394,55 @@ public class PlayerController : Status
     }
 
     #endregion Lazer
+
+    #region MELEE
+
+    private void Melee()
+    {
+        isMeleeAttackOn = false;
+        if (currentLazerGauge > 0)
+        {
+            canLazerRecover = false;
+            isMeleeAttackOn = true;
+            currentLazerGauge -= .07f;
+            timer += Time.deltaTime;
+            if (timer >= MeleeAttackSpeed)
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    timer = 0f;
+                    currentLazerGauge -= MeleeGauge;
+                    StopCoroutine(MeleeAttack());
+                    StartCoroutine(MeleeAttack());
+                }
+            }
+        }
+    }
+
+    private IEnumerator MeleeAttack()
+    {
+        myAnim.SetTrigger("Attack_Melee");
+        myRig.AddForce(transform.right * MeleeDashSpeed, ForceMode.VelocityChange);
+        GameObject clone = Instantiate(boostEffectPrefab, transform.position, Quaternion.LookRotation(-transform.right));
+        Destroy(clone, 3f);
+        MeleeHitBox.SetActive(true);
+        yield return new WaitForSeconds(.15f);
+        MeleeHitBox.SetActive(false);
+    }
+
+    private void SaborOnOff()
+    {
+        if (isMeleeAttackOn)
+        {
+            Sabor.SetActive(true);
+        }
+        else
+        {
+            Sabor.SetActive(false);
+        }
+    }
+
+    #endregion MELEE
 
     // RED에게 피격시 잠시 무적
     private IEnumerator ImmortalFor(float _time)
@@ -415,48 +474,4 @@ public class PlayerController : Status
     {
         shootingSound.Play();
     }
-
-    #region MELEE
-
-    private void Melee()
-    {
-        isMeleeAttackOn = true;
-        currentLazerGauge -= .07f;
-        timer += Time.deltaTime;
-        if (timer >= MeleeAttackSpeed)
-        {
-            if (Input.GetButtonDown("Fire1") && currentLazerGauge > 0)
-            {
-                timer = 0f;
-                currentLazerGauge -= MeleeGauge;
-                StopCoroutine(MeleeAttack());
-                StartCoroutine(MeleeAttack());
-            }
-        }
-    }
-
-    private IEnumerator MeleeAttack()
-    {
-        myAnim.SetTrigger("Attack_Melee");
-        myRig.AddForce(transform.right * MeleeDashSpeed, ForceMode.VelocityChange);
-        GameObject clone = Instantiate(boostEffectPrefab, transform.position, Quaternion.LookRotation(-transform.right));
-        Destroy(clone, 3f);
-        MeleeHitBox.SetActive(true);
-        yield return new WaitForSeconds(.15f);
-        MeleeHitBox.SetActive(false);
-    }
-
-    private void SaborOnOff()
-    {
-        if (isMeleeAttackOn)
-        {
-            Sabor.SetActive(true);
-        }
-        else
-        {
-            Sabor.SetActive(false);
-        }
-    }
-
-    #endregion MELEE
 }

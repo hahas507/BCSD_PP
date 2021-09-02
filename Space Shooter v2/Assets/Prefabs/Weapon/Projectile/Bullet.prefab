@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8782819498127519632}
   m_Layer: 10
   m_Name: Bullet
-  m_TagString: Bullet
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +113,6 @@ MonoBehaviour:
   isThisPlayer: 1
   bulletDamage: 1
   hitParticlePrefab: {fileID: 3287692079780859339, guid: 3fabe2a3318f60d438f1029f2d45c3bf, type: 3}
-  shootingSound: Battle_Player_Shoot
 --- !u!1 &5336454869329621347
 GameObject:
   m_ObjectHideFlags: 0

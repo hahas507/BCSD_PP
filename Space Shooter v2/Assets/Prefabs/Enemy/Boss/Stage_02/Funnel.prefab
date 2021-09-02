@@ -127,16 +127,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3017cf7c53fd10147879a76a59157d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeCycle: 0.5
+  defendCycle: 0.135
   randomPositionX: 50
   randomPositionZ: 50
-  repositionCycle: 1
-  repositionSpeed: 5
+  repositionCycle: 0.5
+  repositionSpeed: 4
   bulletLayer:
     serializedVersion: 2
     m_Bits: 1024
-  viewRadius: 100
-  viewAngle: 360
+  viewRadius: 49.2
 --- !u!120 &2834835749013315709
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -156,7 +155,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 123ac6dc79004e54b8b352a7e64acdca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -186,22 +185,13 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.41666603
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -237,7 +227,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1

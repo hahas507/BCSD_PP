@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class Funnel : MonoBehaviour
 {
-    [SerializeField] private float shakeCycle;
+    [Range(0, 1)]
+    [SerializeField] private float defendCycle;
 
-    [Range(0, 50)]
+    [Range(0, 100)]
     [SerializeField] private float randomPositionX, randomPositionZ;
 
     [SerializeField] private float repositionCycle;
@@ -24,9 +25,6 @@ public class Funnel : MonoBehaviour
 
     [Range(0, 100)]
     [SerializeField] private float viewRadius;
-
-    [Range(0, 360)]
-    [SerializeField] private float viewAngle;
 
     private LineRenderer lineRenderer;
 
@@ -96,12 +94,12 @@ public class Funnel : MonoBehaviour
                 if (targetTransform.tag == "PlayerBullet")
                 {
                     targetDirection = (targetTransform.position - transform.position).normalized;
-                    float lookAngle = Vector3.Angle(transform.forward, targetDirection);
-                    if (lookAngle < viewAngle / 2)
+
+                    if (Physics.Raycast(transform.position, targetDirection, out hitInfo, viewRadius, bulletLayer))
                     {
-                        if (Physics.Raycast(transform.position, targetDirection, out hitInfo, viewRadius, bulletLayer))
+                        if (hitInfo.transform.tag == "PlayerBullet" && hitInfo.transform)
                         {
-                            if (hitInfo.transform.tag == "PlayerBullet")
+                            if (hitInfo.transform != null)
                             {
                                 LookAt();
                                 lineRenderer.enabled = true;
@@ -113,21 +111,8 @@ public class Funnel : MonoBehaviour
                     }
                 }
             }
-
-            yield return new WaitForSeconds(shakeCycle);
+            yield return new WaitForSeconds(defendCycle);
             lineRenderer.enabled = false;
-
-            //transform.localEulerAngles = new Vector3(0f, Mathf.Clamp(UnityEngine.Random.Range(-maximumAngle, maximumAngle), -maximumAngle, maximumAngle), 0f);
-            //Debug.DrawRay(transform.position, Vector3.right, Color.red, 1);
-            //if (Physics.Raycast(transform.position, Vector3.right, out hitInfo, detectMaxDistance, bulletLayer))
-            //{
-            //    if (hitInfo.transform.tag == "PlayerBullet")
-            //    {
-            //        Destroy(hitInfo.transform.gameObject);
-            //    }
-            //}
-
-            //yield return new WaitForSeconds(shakeCycle);
         }
     }
 }

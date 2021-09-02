@@ -26,6 +26,8 @@ public class Funnel : Status
     [Range(0, 100)]
     [SerializeField] private float viewRadius;
 
+    private GameObject[] funnels;
+
     private LineRenderer lineRenderer;
 
     protected override void Awake()

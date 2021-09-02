@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisName: Warship
-  thisHP: 3000
+  thisHP: 2500
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -745,7 +745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisName: Warship Engine
-  thisHP: 300
+  thisHP: 175
   engindDownDamage: 700
 --- !u!1 &7481972086848678905
 GameObject:

@@ -9,11 +9,13 @@ public class Engine : Status
     private float startSpeed;
     [SerializeField] private float engindDownDamage;
     private Engine theEngine;
+    private BoxCollider boxCol;
 
     protected override void Awake()
     {
         base.Awake();
         theWarship = FindObjectOfType<Warship>();
+        boxCol = GetComponent<BoxCollider>();
     }
 
     private void Start()
@@ -32,6 +34,7 @@ public class Engine : Status
                 isDead = true;
                 theWarship.GetDamage(engindDownDamage);
                 theEngine.enabled = false;
+                boxCol.enabled = false;
             }
         }
     }

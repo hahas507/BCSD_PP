@@ -11,11 +11,18 @@ public class MechaTrooper : Status
     {
         base.Awake();
         navMesh = GetComponent<NavMeshAgent>();
+        BattleSceneManager.isMainTargetDefeated = false;
     }
 
     public override void GetDamage(float _damage)
     {
         base.GetDamage(_damage);
+        if (currentHP <= 0)
+        {
+            isDead = true;
+            BattleSceneManager.isMainTargetDefeated = true;
+            GameManager.Stage02Cleared = true;
+        }
     }
 
     private void Start()
@@ -24,6 +31,5 @@ public class MechaTrooper : Status
 
     private void Update()
     {
-        Debug.Log(currentHP);
     }
 }

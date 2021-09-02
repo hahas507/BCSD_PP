@@ -62,7 +62,7 @@ public class Menu : MonoBehaviour
         {
             ClearedText[0].SetActive(true);
         }
-        else if (GameManager.Stage02Cleared)
+        if (GameManager.Stage02Cleared)
         {
             ClearedText[1].SetActive(true);
         }
@@ -81,6 +81,11 @@ public class Menu : MonoBehaviour
         SaveOrLoad.SaveData();
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     public void LoadBattleTest()
     {
         FadeOut.SetActive(true);
@@ -91,6 +96,12 @@ public class Menu : MonoBehaviour
     {
         FadeOut.SetActive(true);
         GameManager.sceneNameToLoad = "Battle_Level_01";
+    }
+
+    public void LoadStage02()
+    {
+        FadeOut.SetActive(true);
+        GameManager.sceneNameToLoad = "Battle_Level_02";
     }
 
     #endregion BOTTONCLICK

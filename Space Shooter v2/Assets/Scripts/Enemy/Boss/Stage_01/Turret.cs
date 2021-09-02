@@ -29,6 +29,7 @@ public class Turret : Status
     [SerializeField] private float turretDestroyDamage;
     [SerializeField] private GameObject hitParticlePrefab;
     [SerializeField] private GameObject turretDownParticle;
+    private CapsuleCollider capCol;
 
     private Turret theTurret;
 
@@ -37,6 +38,7 @@ public class Turret : Status
         base.Awake();
         theTurret = GetComponent<Turret>();
         theWarship = FindObjectOfType<Warship>();
+        capCol = GetComponent<CapsuleCollider>();
     }
 
     private void Update()
@@ -57,6 +59,7 @@ public class Turret : Status
                 theWarship.GetDamage(turretDestroyDamage);
                 StartCoroutine(TurretDown());
                 theTurret.enabled = false;
+                capCol.enabled = false;
             }
         }
     }

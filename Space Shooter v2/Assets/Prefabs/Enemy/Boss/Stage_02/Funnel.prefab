@@ -258,8 +258,8 @@ MonoBehaviour:
   thisName: Funnel
   thisHP: 35
   defendCycle: 0.135
-  randomPositionX: 50
-  randomPositionZ: 50
+  randomPositionX: 75
+  randomPositionZ: 75
   repositionCycle: 0.5
   repositionSpeed: 4
   bulletLayer:

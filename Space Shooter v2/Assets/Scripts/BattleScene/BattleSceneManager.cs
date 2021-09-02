@@ -41,19 +41,26 @@ public class BattleSceneManager : MonoBehaviour
 
     private void TimeScale()
     {
-        if (!isMenuOpen)
+        if (!isMainTargetDefeated)
         {
-            isSceneChanging = false;
-            Time.timeScale = 1f;
-        }
-        else if (isMenuOpen)
-        {
-            Time.timeScale = 0f;
-
-            if (isSceneChanging)
+            if (!isMenuOpen)
             {
+                isSceneChanging = false;
                 Time.timeScale = 1f;
             }
+            else if (isMenuOpen)
+            {
+                Time.timeScale = 0f;
+
+                if (isSceneChanging)
+                {
+                    Time.timeScale = 1f;
+                }
+            }
+        }
+        else
+        {
+            Time.timeScale = 1f;
         }
     }
 

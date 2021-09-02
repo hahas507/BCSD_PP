@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Funnel : MonoBehaviour
+public class Funnel : Status
 {
     [Range(0, 1)]
     [SerializeField] private float defendCycle;
@@ -28,8 +28,9 @@ public class Funnel : MonoBehaviour
 
     private LineRenderer lineRenderer;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 2;
         lineRenderer.enabled = false;
@@ -39,6 +40,22 @@ public class Funnel : MonoBehaviour
     {
         StartCoroutine(LookAtBullet());
         StartCoroutine(RandomPositioning());
+    }
+
+    private void Update()
+    {
+        Debug.Log(currentHP);
+    }
+
+    public override void GetDamage(float _damage)
+    {
+        base.GetDamage(_damage);
+        if (currentHP <= 0)
+        {
+            isDead = true;
+            StopAllCoroutines();
+            Destroy(gameObject);
+        }
     }
 
     private float GetDegree(Vector3 _from, Vector3 _to)

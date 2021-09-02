@@ -10709,6 +10709,8 @@ MonoBehaviour:
   lazerMaxDistance: 100
   lazerDamage: 0.5
   maxLazerGauge: 500
+  currentLazerGauge: 0
+  lazerConsum: 2
   rechargeAlertParticle: {fileID: 3955758911079250391}
   Sabor: {fileID: 8341877763393175142}
   MeleeHitBox: {fileID: 357409892332207685}

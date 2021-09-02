@@ -31,7 +31,8 @@ public class PlayerController : Status
     [SerializeField] private float lazerMaxDistance;
 
     [SerializeField] private float lazerDamage;
-    [SerializeField] private float maxLazerGauge; private float currentLazerGauge;
+    [SerializeField] private float maxLazerGauge, lazerConsum;
+    private float currentLazerGauge;
     [SerializeField] private GameObject rechargeAlertParticle;
     private RaycastHit hitInfo;
 
@@ -347,7 +348,7 @@ public class PlayerController : Status
         {
             isLazerOnFire = true;
             canLazerRecover = false;
-            currentLazerGauge -= 1f;
+            currentLazerGauge -= lazerConsum;
             lazerShootEffect.Play();
             myAnim.SetBool("Attack_Lazer", true);
             if (Physics.Raycast(shootingHand.transform.position + shootingHand.transform.up, shootingHand.transform.forward, out hitInfo, lazerMaxDistance, attackLayer))

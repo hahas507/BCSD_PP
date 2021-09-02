@@ -24,5 +24,6 @@ public class MechaTrooper : Status
 
     private void Update()
     {
+        Debug.Log(currentHP);
     }
 }

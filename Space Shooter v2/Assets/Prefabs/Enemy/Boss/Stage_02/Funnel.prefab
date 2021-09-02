@@ -128,6 +128,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maximumAngle: 45
   shakeCycle: 0.2
+  randomPositionX: 50
+  randomPositionZ: 50
+  repositionCycle: 1
+  repositionSpeed: 5
 --- !u!1 &5065171712505294034
 GameObject:
   m_ObjectHideFlags: 0

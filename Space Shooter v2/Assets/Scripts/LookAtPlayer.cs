@@ -16,8 +16,6 @@ public class LookAtPlayer : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("playerPosition" + playerPosition);
-        Debug.Log("myPosition" + myPosition);
         LookAt();
     }
 

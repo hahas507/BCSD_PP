@@ -5,14 +5,12 @@ using UnityEngine.AI;
 
 public class MechaTrooper : Status
 {
-    [SerializeField] private Transform[] waypoints;
     private NavMeshAgent navMesh;
 
     protected override void Awake()
     {
         base.Awake();
         navMesh = GetComponent<NavMeshAgent>();
-        navMesh.SetDestination(waypoints[0].position);
     }
 
     public override void GetDamage(float _damage)

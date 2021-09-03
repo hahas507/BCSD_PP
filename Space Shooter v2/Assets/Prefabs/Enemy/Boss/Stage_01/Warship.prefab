@@ -220,8 +220,8 @@ MonoBehaviour:
   - {fileID: 6857189777393956606, guid: c43a39e5ce6eeb14ab6b8b49b13a7f1d, type: 3}
   - {fileID: 4035667851419562586, guid: ac40addc7b8379c4781a09fa26df85a0, type: 3}
   - {fileID: 3500938767960215942, guid: 0a04ca483cf2e054ea241a82d50c711b, type: 3}
-  JakoSpawnRate: 1.5
-  spawnHowMany: 2
+  JakoSpawnRate: 1
+  spawnHowMany: 1
 --- !u!1 &4150890651584634458
 GameObject:
   m_ObjectHideFlags: 0

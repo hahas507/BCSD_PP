@@ -17,6 +17,10 @@ public class Warship : Status
 
     private int JakoLength;
 
+    private bool phase01 = false;
+    private bool phase02 = false;
+    private bool phase03 = false;
+
     public float CURRENTSPEED
     {
         get { return navMesh.speed; }
@@ -38,18 +42,28 @@ public class Warship : Status
     {
         MoveToNextWaypoint();
         PhaseCheck();
+        Debug.Log("JakoLength " + JakoLength);
+        Debug.Log("spawnHowMany " + spawnHowMany);
     }
 
     private void PhaseCheck()
     {
-        JakoLength = 0;
-        if (currentHP <= thisHP * (2f / 3f))
+        if (!phase01)
         {
-            JakoLength = 1;
-            if (currentHP <= thisHP * (1f / 3f))
-            {
-                JakoLength = 2;
-            }
+            phase01 = true;
+            JakoLength++;
+        }
+        else if (!phase02 && currentHP <= thisHP * (2f / 3f))
+        {
+            phase02 = true;
+            JakoLength++;
+            spawnHowMany++;
+        }
+        else if (!phase03 && currentHP <= thisHP * (1f / 3f))
+        {
+            phase03 = true;
+            JakoLength++;
+            spawnHowMany++;
         }
     }
 
@@ -98,9 +112,9 @@ public class Warship : Status
         yield return wait;
         for (int i = 0; i < spawnHowMany; i++)
         {
-            Instantiate(Jako[UnityEngine.Random.Range(0, JakoLength + 1)], transform.position + new Vector3(20, 6, 0), Quaternion.identity);
+            Instantiate(Jako[UnityEngine.Random.Range(0, JakoLength)], transform.position + new Vector3(20, 6, 0), Quaternion.identity);
             yield return wait;
-            Instantiate(Jako[UnityEngine.Random.Range(0, JakoLength + 1)], transform.position + new Vector3(-20, 6, 0), Quaternion.identity);
+            Instantiate(Jako[UnityEngine.Random.Range(0, JakoLength)], transform.position + new Vector3(-20, 6, 0), Quaternion.identity);
             yield return wait;
         }
     }

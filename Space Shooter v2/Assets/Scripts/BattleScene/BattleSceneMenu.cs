@@ -8,6 +8,7 @@ public class BattleSceneMenu : MonoBehaviour
 
     public void ReturnToLobby()
     {
+        BattleSceneManager.isSceneChanging = true;
         FadeOut.SetActive(true);
     }
 

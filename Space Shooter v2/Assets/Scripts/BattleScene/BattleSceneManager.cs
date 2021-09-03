@@ -14,6 +14,7 @@ public class BattleSceneManager : MonoBehaviour
     public static bool isMenuOpen = false;
     public static bool isPlayerDead = false;
     public static bool isMainTargetDefeated = false;
+    public static bool isSceneChanging = false;
 
     private bool stopTime = false;
 
@@ -45,7 +46,7 @@ public class BattleSceneManager : MonoBehaviour
     {
         if (stopTime)
         {
-            if (!isMenuOpen)
+            if (!isMenuOpen || isSceneChanging)
             {
                 Time.timeScale = 1f;
             }

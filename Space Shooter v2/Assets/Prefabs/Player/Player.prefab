@@ -10704,7 +10704,7 @@ MonoBehaviour:
   shootingHand: {fileID: 9168186397763002916}
   fireRate: 0.1
   fireAngle: 6
-  shotgunBulletCount: 10
+  shotgunBulletCount: 7
   shotgunFireRate: 0.5
   lazerMaxDistance: 100
   lazerDamage: 0.5

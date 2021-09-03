@@ -16,12 +16,15 @@ public class MechaTrooper : Status
 
     public override void GetDamage(float _damage)
     {
-        base.GetDamage(_damage);
-        if (currentHP <= 0)
+        if (!isDead && !BattleSceneManager.isPlayerDead)
         {
-            isDead = true;
-            BattleSceneManager.isMainTargetDefeated = true;
-            GameManager.Stage02Cleared = true;
+            base.GetDamage(_damage);
+            if (currentHP <= 0)
+            {
+                isDead = true;
+                BattleSceneManager.isMainTargetDefeated = true;
+                GameManager.Stage02Cleared = true;
+            }
         }
     }
 
@@ -31,5 +34,6 @@ public class MechaTrooper : Status
 
     private void Update()
     {
+        Debug.Log(currentHP);
     }
 }

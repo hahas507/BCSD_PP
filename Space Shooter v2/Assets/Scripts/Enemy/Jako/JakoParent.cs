@@ -15,12 +15,14 @@ public abstract class JakoParent : Status
 
     [SerializeField] protected float repathTime;
     protected float repathTimer; //경로 타이머
+    protected CapsuleCollider capCol;
 
     protected override void Awake()
     {
         base.Awake();
         rigid = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
+        capCol = GetComponent<CapsuleCollider>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         if (Waypoints.Length != 0)
         {
@@ -45,6 +47,7 @@ public abstract class JakoParent : Status
             if (isDead)
             {
                 agent.enabled = false;
+                capCol.enabled = false;
                 StartCoroutine(JakoDeathCoroutine());
             }
         }
@@ -54,7 +57,7 @@ public abstract class JakoParent : Status
     {
         for (int i = 0; i < 5; i++)
         {
-            rigid.AddForce(transform.forward * 30, ForceMode.VelocityChange);
+            rigid.AddForce(transform.forward * 20, ForceMode.VelocityChange);
             var particleClone = Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
             Destroy(particleClone, 2f);
             yield return new WaitForSeconds(.2f);

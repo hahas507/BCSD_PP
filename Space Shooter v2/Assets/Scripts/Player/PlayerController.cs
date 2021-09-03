@@ -252,11 +252,6 @@ public class PlayerController : Status
         {
             applySpeed = boostSpeed;
 
-            myRig.AddForce(playerMove * applySpeed, ForceMode.VelocityChange);
-            if (myRig.velocity.magnitude > playerSpeedLimit)
-            {
-                myRig.velocity = Vector3.ClampMagnitude(myRig.velocity, playerSpeedLimit);
-            }
             if (Mathf.Abs(currentMoveSpeedX) > boostStartSpeed || Mathf.Abs(currentMoveSpeedY) > boostStartSpeed)
             {
                 currentBoosterLeft -= 1;
@@ -273,6 +268,10 @@ public class PlayerController : Status
         }
 
         myRig.AddForce(playerMove * applySpeed, ForceMode.VelocityChange);
+        if (myRig.velocity.magnitude > playerSpeedLimit)
+        {
+            myRig.velocity = Vector3.ClampMagnitude(myRig.velocity, playerSpeedLimit);
+        }
     }
 
     private IEnumerator BoosterRecoverCoroutine()

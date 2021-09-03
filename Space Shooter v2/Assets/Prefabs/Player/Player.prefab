@@ -10589,7 +10589,7 @@ MonoBehaviour:
   attackLayer:
     serializedVersion: 2
     m_Bits: 768
-  boostSpeed: 80
+  boostSpeed: 200
   playerSpeed: 2.5
   playerSpeedLimit: 200
   shootingHand: {fileID: 9168186397763002916}

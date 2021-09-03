@@ -196,7 +196,7 @@ public class PlayerController : Status
 
     public override void GetDamage(float _damage)
     {
-        if (!isDead)
+        if (!isDead && !BattleSceneManager.isMainTargetDefeated)
         {
             base.GetDamage(_damage);
 

@@ -55,15 +55,18 @@ public class Warship : Status
 
     public override void GetDamage(float _damage)
     {
-        base.GetDamage(_damage);
-        if (currentHP <= 0)
+        if (!isDead && !BattleSceneManager.isPlayerDead)
         {
-            isDead = true;
-            BattleSceneManager.isMainTargetDefeated = true;
-            GameManager.Stage01Cleared = true;
-            navMesh.enabled = false;
-            theWarship.enabled = false;
-            //Boss defeat event;
+            base.GetDamage(_damage);
+            if (currentHP <= 0)
+            {
+                isDead = true;
+                BattleSceneManager.isMainTargetDefeated = true;
+                GameManager.Stage01Cleared = true;
+                navMesh.enabled = false;
+                theWarship.enabled = false;
+                //Boss defeat event;
+            }
         }
     }
 

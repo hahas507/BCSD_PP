@@ -9,14 +9,12 @@ public class BattleSceneMenu : MonoBehaviour
     public void ReturnToLobby()
     {
         FadeOut.SetActive(true);
-        BattleSceneManager.isSceneChanging = true;
     }
 
     public void SaveGameAndReturnToLobby()
     {
         SaveOrLoad.SaveData();
         FadeOut.SetActive(true);
-        BattleSceneManager.isSceneChanging = true;
     }
 
     public void QuitGame()

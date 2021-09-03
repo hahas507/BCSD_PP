@@ -8,12 +8,14 @@ public class BattleSceneManager : MonoBehaviour
 {
     [SerializeField] private GameObject MainPanel;
     [SerializeField] private GameObject MenuPanel;
-    [SerializeField] private GameObject ResultPanel;
+    [SerializeField] private GameObject ClearedPanel;
+    [SerializeField] private GameObject FailedPanel;
 
     public static bool isMenuOpen = false;
     public static bool isPlayerDead = false;
     public static bool isMainTargetDefeated = false;
-    public static bool isSceneChanging = false;
+
+    private bool stopTime = false;
 
     private void Start()
     {
@@ -41,21 +43,15 @@ public class BattleSceneManager : MonoBehaviour
 
     private void TimeScale()
     {
-        if (!isMainTargetDefeated)
+        if (stopTime)
         {
             if (!isMenuOpen)
             {
-                isSceneChanging = false;
                 Time.timeScale = 1f;
             }
             else if (isMenuOpen)
             {
                 Time.timeScale = 0f;
-
-                if (isSceneChanging)
-                {
-                    Time.timeScale = 1f;
-                }
             }
         }
         else
@@ -69,15 +65,25 @@ public class BattleSceneManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P) && !isPlayerDead && !isMainTargetDefeated)
         {
             isMenuOpen = !isMenuOpen;
+            stopTime = true;
             MainPanel.SetActive(isMenuOpen);
             MenuPanel.SetActive(isMenuOpen);
         }
 
-        if (isPlayerDead || isMainTargetDefeated)
+        if (isMainTargetDefeated)
         {
             isMenuOpen = true;
+            stopTime = false;
             MainPanel.SetActive(isMenuOpen);
-            ResultPanel.SetActive(isMenuOpen);
+            ClearedPanel.SetActive(isMenuOpen);
+        }
+
+        if (isPlayerDead)
+        {
+            isMenuOpen = true;
+            stopTime = false;
+            MainPanel.SetActive(isMenuOpen);
+            FailedPanel.SetActive(isMenuOpen);
         }
     }
 }

@@ -42,6 +42,8 @@ public class Bullet : MonoBehaviour
             if (other.transform.tag == "Player" || other.transform.tag == "Rock")
             {
                 other.GetComponent<Status>().GetDamage(bulletDamage);
+                var clone = Instantiate(hitParticlePrefab, transform.position, Quaternion.identity);
+                Destroy(clone, 1);
                 Destroy(gameObject);
             }
         }

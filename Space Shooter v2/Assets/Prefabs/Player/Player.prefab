@@ -5655,7 +5655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 315585977ff470f449339fc031902c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  damage: 10
 --- !u!1 &662162517622296744
 GameObject:
   m_ObjectHideFlags: 0
@@ -10709,14 +10709,13 @@ MonoBehaviour:
   lazerMaxDistance: 100
   lazerDamage: 0.5
   maxLazerGauge: 500
-  currentLazerGauge: 0
-  lazerConsum: 2
+  lazerConsum: 2.5
   rechargeAlertParticle: {fileID: 3955758911079250391}
   Sabor: {fileID: 8341877763393175142}
   MeleeHitBox: {fileID: 357409892332207685}
   MeleeDashSpeed: 300
   MeleeAttackSpeed: 1
-  MeleeGauge: 90
+  MeleeGauge: 100
   bulletPrefab: {fileID: 4147393132411265289, guid: 13811f49c45f0284ea7dfaad88f2e047, type: 3}
   boostEffectPrefab: {fileID: 5493732155541517173, guid: 9ff211934a45577449f7de2efb12fe92, type: 3}
   LazerHitEffectPrefab: {fileID: 3287692079780859339, guid: ebab2bde95cd70d45b3092a550d0ee3d, type: 3}

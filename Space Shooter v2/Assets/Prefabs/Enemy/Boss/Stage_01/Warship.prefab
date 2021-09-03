@@ -685,7 +685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisName: Warship Engine
-  thisHP: 175
+  thisHP: 150
   engindDownDamage: 700
 --- !u!1 &7481972086848678905
 GameObject:

@@ -86,11 +86,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisName: Jako RED
-  thisHP: 3
+  thisHP: 6
   deathParticlePrefab: {fileID: 8440117091162997854, guid: be69a9148294868429effa1b9682ee9a, type: 3}
   rigid: {fileID: -5679675878163510671}
   agent: {fileID: -8815643248062307390}
-  target: {fileID: 0}
   Waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -98,7 +97,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  rePathTime: 0.6
+  repathTime: 0
   bashAngle: 130
   bashRange: 100
   targetMask:

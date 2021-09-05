@@ -7,6 +7,7 @@ public class PlayerController : Status
 {
     [SerializeField] private Transform targetPosition; //Look at the cursor.
     [SerializeField] private LayerMask attackLayer;
+    private Vector3 playerMove;
     [SerializeField] private float boostSpeed;
     [SerializeField] private float playerSpeed;
     [SerializeField] private float playerSpeedLimit;
@@ -63,6 +64,8 @@ public class PlayerController : Status
     private bool canLazerRecover = false;
     private bool isLazerOnFire = false;
     private bool isMeleeAttackOn = false;
+    private bool isMoving = false;
+    private bool isBoosting = false;
 
     [SerializeField] private float immortalTime; private float immortalTimer; //무적 타이머
     private bool isAttacked = false;
@@ -117,12 +120,17 @@ public class PlayerController : Status
 
     private void Update()
     {
-        TryMove();
+        MoveCheck();
         DetectWeaponSelect();
         SaborOnOff();
         LazerRecharge();
         UIfollow();
         LookAt();
+    }
+
+    private void FixedUpdate()
+    {
+        TryMove();
     }
 
     public enum WEAPONS
@@ -238,39 +246,56 @@ public class PlayerController : Status
 
     #region Move+Booster
 
-    private void TryMove()
+    private void MoveCheck()
     {
         applySpeed = playerSpeed;
         float xInput = Input.GetAxis("Horizontal");
         float zInput = Input.GetAxis("Vertical");
-        Vector3 playerMove = new Vector3(xInput, 0f, zInput);
-
-        float currentMoveSpeedX = myRig.velocity.x;
-        float currentMoveSpeedY = myRig.velocity.z;
-
-        if (Input.GetKeyDown(KeyCode.Space) && currentBoosterLeft > 0)
+        playerMove = new Vector3(xInput, 0f, zInput);
+        if (playerMove != Vector3.zero)
         {
-            applySpeed = boostSpeed;
-
-            if (Mathf.Abs(currentMoveSpeedX) > boostStartSpeed || Mathf.Abs(currentMoveSpeedY) > boostStartSpeed)
+            isMoving = true;
+            if (Input.GetKeyDown(KeyCode.Space) && currentBoosterLeft > 0)
             {
-                currentBoosterLeft -= 1;
-                GameObject clone = Instantiate(boostEffectPrefab, transform.position, Quaternion.LookRotation(-transform.right));
-                Destroy(clone, 3f);
-
-                myAnim.SetTrigger("Booster");
-                if (!isBoosterRecovering)
-                {
-                    isBoosterRecovering = true;
-                    StartCoroutine(BoosterRecoverCoroutine());
-                }
+                isBoosting = true;
             }
         }
+    }
 
-        myRig.AddForce(playerMove * applySpeed, ForceMode.VelocityChange);
-        if (myRig.velocity.magnitude > playerSpeedLimit)
+    private void TryMove()
+    {
+        if (isMoving)
         {
-            myRig.velocity = Vector3.ClampMagnitude(myRig.velocity, playerSpeedLimit);
+            if (isBoosting)
+            {
+                applySpeed = boostSpeed;
+                float currentMoveSpeedX = myRig.velocity.x;
+                float currentMoveSpeedY = myRig.velocity.z;
+                if (Mathf.Abs(currentMoveSpeedX) > boostStartSpeed || Mathf.Abs(currentMoveSpeedY) > boostStartSpeed)
+                {
+                    currentBoosterLeft -= 1;
+                    GameObject clone = Instantiate(boostEffectPrefab, transform.position, Quaternion.LookRotation(-transform.right));
+                    Destroy(clone, 3f);
+
+                    myAnim.SetTrigger("Booster");
+                    if (!isBoosterRecovering)
+                    {
+                        isBoosterRecovering = true;
+                        StartCoroutine(BoosterRecoverCoroutine());
+                    }
+                }
+            }
+
+            myRig.AddForce(playerMove * applySpeed, ForceMode.VelocityChange);
+            isBoosting = false;
+            if (myRig.velocity.magnitude > playerSpeedLimit)
+            {
+                myRig.velocity = Vector3.ClampMagnitude(myRig.velocity, playerSpeedLimit);
+            }
+        }
+        else
+        {
+            return;
         }
     }
 
@@ -464,8 +489,13 @@ public class PlayerController : Status
 
     private void UIfollow()
     {
-        Vector3 UIposition = Camera.main.WorldToScreenPoint(transform.position);
-        UI.transform.position = UIposition;
+        //Vector3 UIposition = Camera.main.WorldToScreenPoint(transform.position);
+        //UI.transform.position = UIposition;
+
+        float UIpositionX = Camera.main.WorldToScreenPoint(transform.position).x;
+        float UIpositionY = Camera.main.WorldToScreenPoint(transform.position).y;
+        Vector3 UIpositionTest = new Vector3(UIpositionX, UIpositionY, 0f);
+        UI.transform.position = UIpositionTest;
     }
 
     private void PlayShootSE()

@@ -28,6 +28,7 @@ public class BattleSceneManager : MonoBehaviour
         TryOpenMenu();
         TimeScale();
         MouseVisible();
+        Debug.Log(Input.GetKeyDown(KeyCode.P) && !isPlayerDead && !isMainTargetDefeated);
     }
 
     private void MouseVisible()
@@ -66,7 +67,7 @@ public class BattleSceneManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P) && !isPlayerDead && !isMainTargetDefeated)
         {
             isMenuOpen = !isMenuOpen;
-            stopTime = true;
+            stopTime = !stopTime;
             MainPanel.SetActive(isMenuOpen);
             MenuPanel.SetActive(isMenuOpen);
         }

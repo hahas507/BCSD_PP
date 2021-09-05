@@ -42,8 +42,6 @@ public class Warship : Status
     {
         MoveToNextWaypoint();
         PhaseCheck();
-        Debug.Log("JakoLength " + JakoLength);
-        Debug.Log("spawnHowMany " + spawnHowMany);
     }
 
     private void PhaseCheck()

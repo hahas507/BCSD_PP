@@ -115,14 +115,14 @@ public class PlayerController : Status
         Sabor.SetActive(false);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        LookAt();
         TryMove();
         DetectWeaponSelect();
-        UIfollow();
-        LazerRecharge();
         SaborOnOff();
+        LazerRecharge();
+        UIfollow();
+        LookAt();
     }
 
     public enum WEAPONS

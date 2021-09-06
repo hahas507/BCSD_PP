@@ -1006,7 +1006,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisHP
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: turret
@@ -1125,7 +1125,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisHP
-      value: 70
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: turret
@@ -1319,7 +1319,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisHP
-      value: 70
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: turret
@@ -1438,7 +1438,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisHP
-      value: 70
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: turret
@@ -1565,7 +1565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisHP
-      value: 70
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: turret
@@ -1684,7 +1684,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: thisHP
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1043314674995173709, guid: 876a55d4eb46eb24f8ee709509f74c60, type: 3}
       propertyPath: turret

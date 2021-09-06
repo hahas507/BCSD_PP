@@ -24,10 +24,14 @@ public class LobbyPlayer : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+        DetectMenu();
+    }
+
     private void FixedUpdate()
     {
         TryMove();
-        DetectMenu();
     }
 
     private void TryMove()

@@ -124,8 +124,12 @@ public class PlayerController : Status
         DetectWeaponSelect();
         SaborOnOff();
         LazerRecharge();
-        UIfollow();
         LookAt();
+    }
+
+    private void LateUpdate()
+    {
+        UIfollow();
     }
 
     private void FixedUpdate()
@@ -225,23 +229,26 @@ public class PlayerController : Status
 
     private void LookAt()
     {
-        float myX = transform.position.x; //Horizontal
-        float myZ = transform.position.z; //Vertical
-
-        float tarX = targetPosition.position.x;
-        float tarZ = targetPosition.position.z;
-
-        myPosition = new Vector3(myX, 0f, myZ);
-        tarPosition = new Vector3(tarX, 0f, tarZ);
-
-        armAngle = new Vector3(0f, GetDegree(myPosition, tarPosition), 0f);
-
-        if (armAngle.y > 90 || armAngle.y < -90)
+        if (!BattleSceneManager.isMenuOpen)
         {
-            armAngle.x += 180;
-        }
+            float myX = transform.position.x; //Horizontal
+            float myZ = transform.position.z; //Vertical
 
-        transform.eulerAngles = -armAngle;
+            float tarX = targetPosition.position.x;
+            float tarZ = targetPosition.position.z;
+
+            myPosition = new Vector3(myX, 0f, myZ);
+            tarPosition = new Vector3(tarX, 0f, tarZ);
+
+            armAngle = new Vector3(0f, GetDegree(myPosition, tarPosition), 0f);
+
+            if (armAngle.y > 90 || armAngle.y < -90)
+            {
+                armAngle.x += 180;
+            }
+
+            transform.eulerAngles = -armAngle;
+        }
     }
 
     #region Move+Booster
@@ -373,7 +380,9 @@ public class PlayerController : Status
             isLazerOnFire = true;
             canLazerRecover = false;
             currentLazerGauge -= lazerConsum;
-            lazerShootEffect.Play();
+
+            LazerShootEffect();
+
             myAnim.SetBool("Attack_Lazer", true);
             if (Physics.Raycast(shootingHand.transform.position + shootingHand.transform.up, shootingHand.transform.forward, out hitInfo, lazerMaxDistance, attackLayer))
             {
@@ -393,6 +402,7 @@ public class PlayerController : Status
             canLazerRecover = true;
             StartCoroutine(LazerGaugeRecoverCoroutine());
         }
+
         if (currentLazerGauge <= 0 && !rechargeAlertParticle.activeSelf)
         {
             rechargeAlertParticle.SetActive(true);
@@ -412,6 +422,7 @@ public class PlayerController : Status
                 canLazerRecover = false;
                 currentLazerGauge = maxLazerGauge;
             }
+
             yield return new WaitForSeconds(.01f);
         }
     }
@@ -489,17 +500,22 @@ public class PlayerController : Status
 
     private void UIfollow()
     {
-        //Vector3 UIposition = Camera.main.WorldToScreenPoint(transform.position);
-        //UI.transform.position = UIposition;
-
-        float UIpositionX = Camera.main.WorldToScreenPoint(transform.position).x;
-        float UIpositionY = Camera.main.WorldToScreenPoint(transform.position).y;
-        Vector3 UIpositionTest = new Vector3(UIpositionX, UIpositionY, 0f);
-        UI.transform.position = UIpositionTest;
+        float playerPosX = Camera.main.WorldToScreenPoint(transform.position).x;
+        float playerPosY = Camera.main.WorldToScreenPoint(transform.position).y;
+        Vector3 UIposition = new Vector3(playerPosX, playerPosY, 0f);
+        UI.transform.position = Vector3.Lerp(UI.transform.position, UIposition, Time.deltaTime * 10);
     }
 
     private void PlayShootSE()
     {
         shootingSound.Play();
+    }
+
+    private void LazerShootEffect()
+    {
+        if (!lazerShootEffect.isPlaying)
+        {
+            lazerShootEffect.Play();
+        }
     }
 }
